@@ -93,31 +93,31 @@
             <tbody>
                 <tr>
 
-                    <td> <input id='q11-1-3' type="text"></td>
+                    <td> <input id='q11-1-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-2-3' type="text"></td>
+                    <td> <input id='q11-2-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-3-3' type="text"></td>
+                    <td> <input id='q11-3-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-4-3' type="text"></td>
+                    <td> <input id='q11-4-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-5-3' type="text"></td>
+                    <td> <input id='q11-5-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-6-3' type="text"></td>
+                    <td> <input id='q11-6-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-7-3' type="text"></td>
+                    <td> <input id='q11-7-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-8-3' type="text"></td>
+                    <td> <input id='q11-8-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q11-9-3' type="text"></td>
+                    <td> <input id='q11-9-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
 
             </tbody>

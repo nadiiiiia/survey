@@ -86,36 +86,36 @@
             <tbody>
                 <tr>
 
-                    <td> <input type="text" id='q9-1-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-1-3'></td>
                     <td><select id='q9-1-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
             
                 </tr>
                 <tr>
-                    <td> <input type="text" id='q9-2-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-2-3'></td>
                     <td><select id='q9-2-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
                 <tr>
-                    <td> <input type="text" id='q9-3-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-3-3'></td>
                    <td><select id='q9-3-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
                 <tr>
-                    <td> <input type="text" id='q9-4-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-4-3'></td>
                    <td><select id='q9-4-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
                 <tr>
-                    <td> <input type="text" id='q9-5-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-5-3'></td>
                     <td><select id='q9-5-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
                 <tr>
-                    <td> <input type="text" id='q9-6-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-6-3'></td>
                     <td><select id='q9-6-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
                 <tr>
-                    <td> <input type="text" id='q9-7-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-7-3'></td>
                     <td><select id='q9-7-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
                 <tr>
-                    <td> <input type="text" id='q9-8-3'></td>
+                    <td> <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-8-3'></td>
                    <td><select id='q9-8-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
             </tbody>

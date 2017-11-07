@@ -19,27 +19,27 @@
                                         <tr>
                                             <th scope="row">Département / Pays 1</th>
                                              <td> <input type="text" name="Q14-1-1" id='q14-1-1' class="useLocal useLocalInput"></td>
-                                            <td><input type="text" name="Q14-1-2" id='q14-1-2' class="useLocal useLocalInput" ></td>
+                                            <td><input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" name="Q14-1-2" id='q14-1-2' class="useLocal useLocalInput" ></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Département / Pays 2</th>
                                             <td> <input type="text" name="Q14-2-1" id='q14-2-1' class="useLocal useLocalInput"></td>
-                                            <td><input type="text" name="Q14-2-2" id='q14-2-2' class="useLocal useLocalInput"></td>
+                                            <td><input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" name="Q14-2-2" id='q14-2-2' class="useLocal useLocalInput"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Département / Pays 3</th>
                                             <td> <input type="text" name="Q14-3-1" id='q14-3-1' class="useLocal useLocalInput"></td>
-                                            <td><input type="text" name="Q14-3-2" id='q14-3-2' class="useLocal useLocalInput"></td>
+                                            <td><input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" name="Q14-3-2" id='q14-3-2' class="useLocal useLocalInput"></td>
                                         </tr>
                                         <tr> 
                                             <th scope="row">Département / Pays 4</th>
                                             <td> <input type="text" name="Q14-4-1" id='q14-4-1' class="useLocal useLocalInput"></td>
-                                            <td><input type="text" name="Q14-4-2" id='q14-4-2' class="useLocal useLocalInput"></td>
+                                            <td><input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" name="Q14-4-2" id='q14-4-2' class="useLocal useLocalInput"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Département / Pays 5</th>
                                             <td> <input type="text" name="Q14-5-1" id='q14-5-1' class="useLocal useLocalInput" ></td>
-                                            <td><input type="text" name="Q14-5-2" id='q14-5-2' class="useLocal useLocalInput" ></td>
+                                            <td><input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" name="Q14-5-2" id='q14-5-2' class="useLocal useLocalInput" ></td>
                                         </tr>
                                 
                                     </tbody>

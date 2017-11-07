@@ -300,7 +300,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script>
             $(document).ready(function () {
 
-                $('input[type="text"]').addClass("useLocal useLocalInput");
+                $('input').addClass("useLocal useLocalInput");
                 $('input[type="checkbox"]').addClass("useLocal useLocalInput");
                 $('select').addClass("useLocal useLocalSelect");
                 //$('input[type="radio"]').addClass("useLocalRadio");
