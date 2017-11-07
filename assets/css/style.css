@@ -1,0 +1,33 @@
+/* YOUR CUSTOM STYLES */
+table.table td, table.table th {
+    padding-top: 0.1rem !important;
+    padding-bottom: 0rem !important;
+}
+input[type=text]{
+    height: 1rem !important;
+}
+.inline {
+    display: inline;
+}
+.cyan-darken-4-color{
+    background-color: #006064 ;
+}
+.cyan-darken-3-color{
+    background-color: #00838f  ;
+}
+.cyan-darken-2-color{
+    background-color:  #0097a7 ;
+}
+
+body{
+    background-color: #e9ecef !important;
+}
+.error{
+    color:red;
+}
+
+.nav-link,.navbar{padding:.5rem 1rem}.nav-link{display:block}.nav-link:focus,.nav-link:hover{text-decoration:none}.nav-link.disabled{color:#868e96}.nav-tabs .nav-item{margin-bottom:-1px}.nav-tabs .nav-link{border-top-left-radius:.25rem;border-top-right-radius:.25rem}.nav-tabs .nav-link:focus,.nav-tabs .nav-link:hover{border-color:#e9ecef #e9ecef #ddd}.nav-tabs .nav-link.disabled{color:#868e96;background-color:transparent;border-color:transparent}.nav-tabs .nav-item.show .nav-link,.nav-tabs .nav-link.active{color:#495057;background-color:#fff;border-color:#ddd #ddd #fff}.nav-tabs .dropdown-menu{margin-top:-1px;border-top-left-radius:0;border-top-right-radius:0}.nav-pills .nav-link{border-radius:.25rem}.nav-pills .nav-link.active,.show>.nav-pills .nav-link{color:#fff;background-color:#007bff}.nav-fill .nav-item{-ms-flex:1 1 auto;-webkit-box-flex:1;-webkit-flex:1 1 auto;flex:1 1 auto;text-align:center}.nav-justified .nav-item{-ms-flex-preferred-size:0;-webkit-flex-basis:0;flex-basis:0;-ms-flex-positive:1;-webkit-box-flex:1;-webkit-flex-grow:1;flex-grow:1;text-align:center}
+
+.mb-r {
+    margin-bottom: 0rem!important;
+}
