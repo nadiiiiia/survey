@@ -559,12 +559,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //                    }
 //
 //                });
-var next = $('#next_btn')[0];
-$(window).keydown(function (e) {
-    if ( e.which === 13 ) {
-        window.location.href = next.href;        
-    }
-});
+//var next = $('#next_btn')[0];
+//$(window).keydown(function (e) {
+//    if ( e.which === 13 ) {
+//        window.location.href = next.href;        
+//    }
+//});
             });
         </script>
 
