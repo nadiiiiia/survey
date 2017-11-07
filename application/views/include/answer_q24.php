@@ -1,0 +1,2 @@
+
+<div class='md-form'><input onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" type = "number" maxlength = "3" min = "0" max = "999" id='q24' class='form-control' placeholder='%'></div>

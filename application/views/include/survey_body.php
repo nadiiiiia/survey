@@ -6,27 +6,30 @@
 
             <!--Section: Dynamic content wrapper-->
             <section  class="mb-5">
-         
-              <?php $attribut = array( 'name' => 'q_form');
-              echo form_open($action,$attribut); ?> 
+
+                <?php $attribut = array('name' => 'q_form');
+                echo form_open($action, $attribut);
+                ?> 
                 <h2><span class="badge blue"></span> </h2>   <!--Titre de la Section-->
-                    <hr/>
-                    <div  class=" card card-body">
+                <hr/>
+                <div  class=" card card-body">
 
-                        <div id="question_body" > 
+                    <div id="question_body" > 
 
-                        </div><span id="counter"></span>
-                        <p id="note" ></p>
-                      
-                        <div id="answer" > 
+                    </div><span id="counter"></span>
+                    <p id="note" ></p>
 
-                        </div>
-
+                    <div id="answer" > 
+                    <?php 
+                    for($i=1;$i<40;$i++){
+                    if($id == $i){ include('answer_q'.$i.'.php'); }
+                    } ?>
                     </div>
-                    <br> 
+                </div>
+                <br> 
 
                 <!-- start Survey btn-->
-               
+
                 <div class="row" >
                     <div class="col-md-12 col-sm-12" id= "survey_btn">
                         <a href="" id="next_btn" class="btn cyan-darken-3-color btn-sm waves-effect waves-light pull-right">suivant</a>
@@ -37,6 +40,7 @@
                 <!-- End Survey btn-->
 <?php echo form_close(); ?>
             </section>
+
             <!--Section: Dynamic content wrapper-->
 
         </div>

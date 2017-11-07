@@ -20,6 +20,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var section_number = <?php echo $section_number; ?>;
         var section_name = <?php echo $section_name; ?>;
         var array_IDs = <?php echo $array_IDs_json; ?>;
+        var total = parseFloat(localStorage.getItem('q4-1-1'));
+        var total_unit = localStorage.getItem('q4-1-2');
+        var total_q13 = parseFloat(localStorage.getItem('q13-1-1'));
+        var total_q13_unit = localStorage.getItem('q13-1-2');
 
     </script>
     <?php $action = 'home/load_question/' . $survey . '/' . $id; ?>
@@ -40,275 +44,548 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!-- SCRIPTS here -->
         <?php include('include/scripts.php'); ?>
+
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pourcentage.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q7.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q9.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q10.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q11.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q14.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q38.js"></script>
+
         <script type="text/javascript">
-            $(document).ready(function () {
- 
-                var answer_body = [];
+        $(document).ready(function () {
+            $('#table-q9').hide();
+            $('#table-q10').hide();
+            $('#table-q11').hide();
+            $('#error_q7').hide();
+            $('#error_q9').hide();
+            $('#error_q10').hide();
+            $('#error_q11').hide();
+            $('#error_q14').hide();
+            $('#error_q38').hide();
 
-                answer_body[1] = " <fieldset class='form-group'><input class='q1' id='q1-oui' name='Q1' type='radio' value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q1-non' class='q1' name='Q1' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
 
-                answer_body[2] = "<div class='md-form'><input type='text' id='q2' class='form-control'value=''></div>";
 
-                answer_body[3] = " <fieldset class='form-group'><input id='q3-oui' name='Q3' type='radio'value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q3-non' name='Q3' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-
-                answer_body[4] = "<div class='col-lg-8 col-md-8 mb-r'>" +
-                        "-la quantité totale de déchets générés sur vos chantiers en 2015 ?<input type='text' id='q4-1'>(précisez l’unité : kg, tonnes, m3)<br><br>" +
-                        "-la quantité moyenne de déchets générés sur un chantier ?<input type='text'id='q4-2'>(précisez l’unité : kg, tonnes, m3) </div>"
-
-                answer_body[5] = " <fieldset class='form-group'><input id='q5-oui' name='Q5' type='radio'value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q5-non' name='Q5' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-		answer_body[7] ="	<div class='col-lg-12 col-md-12 mb-r'>"+
-"L’enquêté répond en quantité si possible,  en % si non."+
-                  " <!--Table-->"+
-"<table class='table'>"+
-"    <!--Table head-->"+
-   " <thead class='blue-grey lighten-4'>"+
-       " <tr>"+
-            "<th>Activité</th>"+
-            "<th>Quantité</th>"+
-           " <th>Unité</th>"+
-            "<th>%</th>"+
-        "</tr>"+
-    "</thead>"+
-    "<!--Table head-->"+
-
-    "<!--Table body-->"+
-    "<tbody>"+
-       "<tr>"+
-           " <th scope='row'>Démolition - technicité courante</th>"+
-            "<td><input type='text' id='q7-1-1'></td>"+
-            "<td><input type='text' id='q7-1-2'></td>"+
-            "<td><input type='text' id='q7-1-3'></td>"+
-        "</tr>"+
-          "<tr>"+
-            "<th scope='row'>Démolition à l'explosif</th>"+
-            "<td><input type='text' id='q7-2-1'></td>"+
-            "<td><input type='text' id='q7-2-2'></td>"+
-            "<td><input type='text' id='q7-2-3'></td>"+
-        "</tr>"+
-        "<tr>"+
-           " <th scope='row'>Découpe du béton*"+ 
-"</th>"+
-            "<td><input type='text' id='q7-3-1'></td>"+
-            "<td><input type='text'id='q7-3-2'></td>"+
-            "<td><input type='text' id='q7-3-3'></td>"+
-        "</tr>"+
-		"<tr>"+
-            "<th scope='row'>Désamiantage</th>"+
-            "<td><input type='text' id='q7-4-1'></td>"+
-            "<td><input type='text' id='q7-4-2'></td>"+
-            "<td><input type='text' id='q7-4-3'></td>"+
-        "</tr>"+
-		"<tr>"+
-            "<th scope='row'>Autrestrav aux de démolition"+
-"</th>"+
-            "<td><input type='text' id='q7-5-1'></td>"+
-            "<td><input type='text' id='q7-5-2'></td>"+
-            "<td><input type='text'id='q7-5-3'></td>"+
-        "</tr>"+
-		"<tr>"+
-           " <th scope='row'>Autresactivité (hors démolition)</th>"+
-            "<td><input type='text' id='q7-6-1'></td>"+
-            "<td><input type='text' id='q7-6-2'></td>"+
-            "<td><input type='text' id='q7-6-3'></td>"+
-        "</tr>"+
-      
-   " </tbody>"+
-    "<!--Table body-->"+
-"</table>"+
-"<!--Table-->"+
-          " <small> * par carottage ou sciage</small>" +    
-					
-     
-                "</div>";
-        answer_body[6] = "<div class='md-form'><input type='text' id='q6' class='form-control'></div>";
-         answer_body[8] = " <fieldset class='form-group'><input id='q8-oui' name='Q8' type='radio' value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q8-non' name='Q8' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-
-         answer_body[9] = " <fieldset class='form-group'><input id='q9-oui' name='Q9' type='radio' value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q9-non' name='Q9' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-          answer_body[10] = " <fieldset class='form-group'><input id='q10-oui' name='Q10' type='radio' value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q10-non' name='Q10' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-
-answer_body[11] = " <fieldset class='form-group'><input id='q11-oui' name='Q11' type='radio' value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldset class='form-group'><input id='q11-non' name='Q11' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-answer_body[12] = "<div class='md-form'><input type='text' id='q12' class='form-control'></div>";
-answer_body[13] = "<div class='col-lg-4 col-md-4 mb-r'>" +
-                        "<input type='text' id='q13'></div>";
-                
-                answer_body[14] = "<div class='row'> <div class='col-lg-3 col-md-3 mb-r'sy>Département / Pays 1</div>" +
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-1-1' placeholder='Nom'></div>"+
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-1-2' placeholder='Quantité (tonnes ou %)'></div></div>"+
-                        "<div class='row'> <div class='col-lg-3 col-md-3 mb-r'>Département / Pays 2</div>" +
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-2-1' placeholder='Nom'></div>"+
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-2-2' placeholder='Quantité (tonnes ou %)'></div></div>"+
-                        "<div class='row'> <div class='col-lg-3 col-md-3 mb-r'>Département / Pays 3</div>" +
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-3-1' placeholder='Nom'></div>"+
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-3-2' placeholder='Quantité (tonnes ou %)'></div></div>"+
-                        "<div class='row'> <div class='col-lg-3 col-md-3 mb-r'>Département / Pays 4</div>" +
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-4-1' placeholder='Nom'></div>"+
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-4-2' placeholder='Quantité (tonnes ou %)'></div></div>"+
-                        "<div class='row'> <div class='col-lg-3 col-md-3 mb-r'>Département / Pays 5</div>" +
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-5-1' placeholder='Nom'></div>"+
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q14-5-2' placeholder='Quantité (tonnes ou %)'></div></div>";
-                  
-                answer_body[15] = " <fieldset class='form-group'><input id='q15-déchet_par_déchet' name='Q15' type='radio' value='déchet_par_déchet'><label for='déchet_par_déchet'>Oui, déchet par déchet</label></fieldset>" +
-                        "<fieldset class='form-group'><input id='q15-avec_regroupements ' name='Q15' type='radio' value='avec_regroupements'><label for='avec_regroupements '>Oui, avec des regroupements de certains déchets</label> </fieldset>"+
-                     "<fieldset class='form-group'><input id='q15-non' name='Q15' type='radio' value='non'><label for='non'>Non, je ne trie pas mes déchets</label> </fieldset>";
-             answer_body[16] = "<div class='md-form'><input type='text' id='q16' class='form-control'></div>";
-             
-             answer_body[17] = "<div class='md-form'><input type='text' id='q17' class='form-control'></div>";
-               answer_body[18] = "<div class='md-form'><input type='text' id='q18' class='form-control'></div>";
-             answer_body[19] = " <fieldset class='form-group'><input id='q19-déchet_par_déchet' name='Q19' type='radio' value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldset class='form-group'><input id='q19-avec_regroupements ' name='Q19' type='radio' value='en_projet'><label for='en_projet '>C’est en projet</label> </fieldset>"+
-                     "<fieldset class='form-group'><input id='q19-non' name='Q19' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-          
-    answer_body[20] = "<div class='md-form'><input type='text' id='q20' class='form-control'></div>";
-            answer_body[21] = "<div class='md-form'><input type='text'  id='q21'class='form-control'></div>";
-             answer_body[22] = "<div class='md-form'><input type='text' id='q22' class='form-control'></div>";
-              answer_body[23] = "<div class='md-form'><input type='text' id='q23' class='form-control'></div>";
-               answer_body[24] = "<div class='md-form'><input type='text' id='q24' class='form-control' placeholder='%'></div>";
-             answer_body[25] = " <fieldset class='form-group'><input id='q25-oui' name='Q25' type='radio' value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q25-non' name='Q25' type='radio' value='non'><label for='non'>Non</label> </fieldset>";
-
-answer_body[26] = " <fieldset class='form-group'><input id='q26-jamais' name='Q26' type='radio' value='jamais'><label for='jamais'>Jamais</label></fieldset>" +
-                        "<fieldset class='form-group'><input id='q26-rarement ' name='Q26' type='radio' value='rarement'><label for='rarement'>Rarement</label> </fieldset>"+
-                     "<fieldset class='form-group'><input id='q26-parfois' name='Q26' type='radio' value='parfois'><label for='parfois'>Parfois</label> </fieldset>"+
-               "<fieldset class='form-group'><input id='q26-souvent' name='Q26' type='radio' value='souvent'><label for='souvent'>Souvent</label> </fieldset>";
-     
-    answer_body[27] = " <fieldset class='form-group'><input id='q27-oui' name='Q27' type='radio'  value='oui'><label for='oui'>Oui</label></fieldset>" +
-                        "<fieldsetlass='form-group'><input id='q27-non' name='Q27' type='radio'  value='non'><label for='non'>Non</label> </fieldset>";
-
-answer_body[28] = " <fieldset class='form-group'><input id='q28-jamais' name='Q26' type='radio' value='jamais'><label for='jamais'>Jamais</label></fieldset>" +
-                        "<fieldset class='form-group'><input id='q28-rarement ' name='Q26' type='radio' value='rarement'><label for='rarement'>Rarement</label> </fieldset>"+
-                     "<fieldset class='form-group'><input id='q28-parfois' name='Q26' type='radio' value='parfois'><label for='parfois'>Parfois</label> </fieldset>"+
-               "<fieldset class='form-group'><input id='q26-souvent' name='Q28' type='radio' value='souvent'><label for='souvent'>Souvent</label> </fieldset>";
-     
-    answer_body[29] = "<div class='md-form'><input type='text' id='q29' class='form-control'></div>";
-      
-       answer_body[30] = "<div class='row'> " +
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q30-1' placeholder='en km'></div>"+
-                        "<div class='col-lg-3 col-md-3 mb-r'><input type='text' id='q30-2' placeholder='en min'></div></div>";
-             
-    answer_body[31] = "<div class='col-lg-8 col-md-8 mb-r'>" +
-                        "Graves de déconstruction<input type='text' id='q31-1' placeholder='oui ou non'><br><br>" +
-                        "graves chaulées<input type='text' id='q31-2' placeholder='oui ou non'> </div>"
- 
-  answer_body[32] = "<div class='md-form'><input type='text' id='q32' class='form-control'></div>";
-   answer_body[33] = "<div class='md-form'><input type='text' id='q33' class='form-control'></div>";
-      answer_body[34] = "<div class='row'> " +
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q34-1' placeholder='Nom '></div>"+
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q34-2' placeholder='Téléphone'></div>"+
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q34-3' placeholder='E-mail '></div></div>";
-                 answer_body[35] = "<div class='md-form'><input type='text' id='q35' class='form-control'></div>";
-                  answer_body[36] = "<div class='md-form'><input type='text' id='q36' class='form-control'></div>";
-                   answer_body[37] = "<div class='md-form'><input type='text' id='q37'  class='form-control'></div>";
-                   
-                   answer_body[38] = "<div class='row'> <div class='col-lg-4 col-md-4 mb-r'>Démolition – technicité courante</div>" +
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q38-1' placeholder='%'></div></div>"+
-                        "<div class='row'> <div class='col-lg-4 col-md-4 mb-r'>Démolition à l’explosif </div>" +
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text'id='q38-2' placeholder='%'></div></div>"+
-                       "<div class='row'> <div class='col-lg-4 col-md-4 mb-r'>Découpe du béton (par carottage ou sciage) </div>" +
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q38-3' placeholder='%'></div></div>"+
-                       "<div class='row'> <div class='col-lg-4 col-md-4 mb-r'>Désamiantage  </div>" +
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q38-4' placeholder='%'></div></div>"+
-                        "<div class='row'> <div class='col-lg-4 col-md-4 mb-r'>Autres travaux de démolition  </div>" +
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q38-5' placeholder='%'></div></div>"+
-                        "<div class='row'> <div class='col-lg-4 col-md-4 mb-r'>Autres activité (hors démolition) </div>" +
-                        "<div class='col-lg-4 col-md-4 mb-r'><input type='text' id='q38-6' placeholder='%'></div></div>";
-                  
-    answer_body[39] = "<div class='md-form'><input type='text' id='q39' class='form-control'></div>";
-    
-    for (i = 1; i <= array_IDs.length; i++)
-                {
-                    if (id == i) {
-                        $("#answer").append(answer_body[i]);
+            /// Règles générales des boutons suivant et précédent
+            href_next = base_url + 'index.php/home/page/' + survey + '/' + id_next;
+            $("#next_btn").attr("href", href_next);
+            
+            href_back = base_url + 'index.php/home/page/' + survey + '/' + id_back;
+            $("#back_btn").attr("href", href_back);
+           
+            /// Règles spécifiques selon les id               
+            if (id == 1)
+            {
+                $('#next_btn').click(function () {
+                    if ($('input[type=radio]').prop("checked") == true && $('input[type=radio]').prop("id") == "q1-oui") {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/3'; //if q1 == oui
+                        $("#next_btn").attr("href", href_next);
                     }
+                });
+                $('#back_btn').hide();
+            }
 
-                }
-    
-    
-    
-    if (section_name == null) {
-                    section_name = "";
-                }
-                if (question_note == null) {
-                    question_note = "";
-                }
+            if (id == 2) {
+                $('#next_btn').click(function () {
+                    href_next = base_url + 'index.php/home/page/' + survey + '/25'; //if q3 == non
+                    $("#next_btn").attr("href", href_next);
 
-                var question_b = $("<p class='inline'><strong> Q" + question_number + " - " + question_body + "</strong></p>");
-                var question_count = $("<p class='inline'><strong> &nbsp;&nbsp; (" + question_number + " / " + array_IDs.length + ")</strong></p>");
-                $(".badge").append(section_number).after(" " + section_name);
-                $("#question_body").append(question_b).after(" ").append(question_count);
+                });
+            }
 
-                $("#note").append(" " + question_note); //pour afficher les notes du question
+            if (id == 3) {
+                $('#next_btn').click(function () {
+                    if ($('input[value="non"][name="Q3"]').prop("checked") == true) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/5'; //if q3 == non
+                        $("#next_btn").attr("href", href_next);
+                    }
+                });
+                href_back = base_url + 'index.php/home/page/' + survey + '/1';
+                $("#back_btn").click(function () {
+                    $(this).attr("href", href_back);
+                });
+            }
+            if (id == 4) {
+                href_next = base_url + 'index.php/home/page/' + survey + '/7';
+                $("#next_btn").click(function () {
+                    $(this).attr("href", href_next);
+                });
+            }
+            if (id == 5) {
 
-                if (id == 1)
-                {
-                    $('#back_btn').hide();
-                } else {
-                    href_back = base_url + 'index.php/home/page/' + survey + '/' + id_back;
-                    $("#back_btn").click(function () {
-                        $(this).attr("href", href_back);
-                    });
+                href_back = base_url + 'index.php/home/page/' + survey + '/3';
+                $("#back_btn").click(function () {
+                    $(this).attr("href", href_back);
+                });
+            }
+            if (id == 8) {
+                $('#next_btn').click(function () {
+                    if ($('input[value="non"][name="Q8"]').prop("checked") == true) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/13'; //if q8 == non
+                        $("#next_btn").attr("href", href_next);
+                    }
+                });
+            }
 
-                }
-                if (id == array_IDs.length)
-                {
-                    $("#next_btn").html("Terminer");
-                    $("#next_btn").click(function () {
-                        $(this).attr("href", '#');
-                    });
-                } else {
-                    href_next = base_url + 'index.php/home/page/' + survey + '/' + id_next;
+            if (id == 13) {
+                $('#next_btn').click(function () {
+
+                    var q13 = parseFloat($('input[name="Q13-1"]').val());
+                    q13 = isNaN(q13) ? '0.00' : q13;
+
+                    if (q13 <= 0) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/15'; //if q8 == non
+                        $("#next_btn").attr("href", href_next);
+                    }
+                });
+            }
+
+            if (id == 15) {
+                $('#next_btn').click(function () {
+                    if ($('#q15 option:selected').val() == 1) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/16';
+                        $("#next_btn").attr("href", href_next);
+                    } else if ($('#q15 option:selected').val() == 2) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/17';
+                        $("#next_btn").attr("href", href_next);
+                    } else {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/18';
+                        $("#next_btn").attr("href", href_next);
+                    }
+                });
+            }
+            if (id == 16) {
+                $('#next_btn').click(function () {
+                    href_next = base_url + 'index.php/home/page/' + survey + '/18';
+                    $("#next_btn").attr("href", href_next);
+                });
+            }
+            if (id == 19) {
+                $('#next_btn').click(function () {
+                    if ( $('input[value="non"][name="Q19"]').prop("checked") == true) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/21';
+                        $("#next_btn").attr("href", href_next);
+                    }
+                });
+            }
+             if (id == 25) {
+                $('#next_btn').click(function () {
+                    if ( $('input[value="non"][name="Q25"]').prop("checked") == true) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/27';
+                        $("#next_btn").attr("href", href_next);
+                    }
+                });
+            }
+              if (id == 27) {
+                $('#next_btn').click(function () {
+                    if ( $('input[value="non"][name="Q27"]').prop("checked") == true) {
+                        href_next = base_url + 'index.php/home/page/' + survey + '/29';
+                        $("#next_btn").attr("href", href_next);
+                    }
+                });
+            }
+
+
+            if (id == array_IDs.length)
+            {
+                $("#next_btn").html("Valider");
+                $("#next_btn").click(function () {
+                    $(this).attr("href", '#');
+                });
+            }
+
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q5-non") {
+                    href_next = base_url + 'index.php/home/page/' + survey + '/25';
                     $("#next_btn").click(function () {
                         $(this).attr("href", href_next);
                     });
                 }
-                
-                
+            });
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q5-oui") {
 
-///fonction pour enregistrer les valeurs en cliquant sur suivant
-$('#next_btn').on('click', function(){
+                    $("#next_btn").click(function () {
+                        $(this).attr("href", href_next);
+                    });
+                }
+            });
 
-    $('input[type="text"]').each(function(){    
-        var id = $(this).attr('id');
-        var value = $(this).val();
-       localStorage.setItem(id, value);
-        
-    });   
-    $('input[type="radio"]:checked').each(function(){
-        var name = $(this).attr('name');
-        var value = $(this).val();
-        localStorage.setItem(name, value);
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q9-oui") {
+                    $('#table-q9').show();
+                }
+            });
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q9-non") {
+                    $('#table-q9').hide();
+                }
+            });
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q10-oui") {
+                    $('#table-q10').show();
+                }
+            });
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q10-non") {
+                    $('#table-q10').hide();
+                }
+            });
 
-         });   
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q11-oui") {
+                    $('#table-q11').show();
+                }
+            });
+            $('input[type="radio"]').click(function () {
+                if ($(this).prop("checked") == true && $(this).prop("id") == "q11-non") {
+                    $('#table-q11').hide();
+                }
+            });
+
+
+            if (section_name == null) {
+                section_name = "";
+            }
+            if (question_note == null) {
+                question_note = "";
+            }
+
+            var question_b = $("<p class='inline'><strong> Q" + question_number + " - " + question_body + "</strong></p>");
+            var question_count = $("<p class='inline'><strong> &nbsp;&nbsp; (" + question_number + " / " + array_IDs.length + ")</strong></p>");
+            $(".badge").append(section_number).after(" " + section_name);
+            $("#question_body").append(question_b).after(" ").append(question_count);
+
+            $("#note").append(" " + question_note); //pour afficher les notes du question
+
+
+
+            /*fonction pour enregistrer les valeurs en cliquant sur suivant*/
+            $('#next_btn').on('click', function () {
+
+                /* $('input[type="text"]').each(function(){    
+                 var id = $(this).attr('id');
+                 var value = $(this).val();
+                 localStorage.setItem(id, value);
+                 
+                 });   
+                 
+                 var t = '';
+                 $('input[type="text"]').keyup(function () {
+                 clearTimeout(t);
+                 var key = $(this).attr('id');
+                 var value = $(this).val();
+                 t = setTimeout(function () {
+                 localStorage.setItem(key, value)
+                 }, 2000);
+                 });
+                 
+                 $('select option').each(function(index,item){
+                 var id = $(this).attr('id');
+                 localStorage.setItem('id',item);
+                 });
+                 */
+                $('input[type="radio"]:checked').each(function () {
+                    var name = $(this).attr('name');
+                    var value = $(this).val();
+                    localStorage.setItem(name, value);
+
+                });
+
+            });
+        });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+
+                $('input[type="text"]').addClass("useLocal useLocalInput");
+                $('input[type="checkbox"]').addClass("useLocal useLocalInput");
+                $('select').addClass("useLocal useLocalSelect");
+                //$('input[type="radio"]').addClass("useLocalRadio");
+                //  relode function every 5 seconds
+//         window.setInterval(function(){
+//             reload_data();
+//        }, 5000);
+
+                // restoration des valeurs des inputs // les vqleurs nonetre déruire en cliquant sur le bouton 'logout' 
+                /*$('input[type="text"]').each(function(){    
+                 var id = $(this).attr('id');
+                 var value = localStorage.getItem(id);
+                 
+                 $(this).val(value);
+                 }); //
+                 
+                 $('input[type="text"]').each(function () {
+                 var key = $(this).attr('id');
+                 if (localStorage.getItem(key)) {
+                 $(this).val(localStorage.getItem(key));
+                 }
+                 });
+                 */
+
+                $('input[type="radio"]').each(function () {
+                    var name = $(this).attr('name');
+                    var value = localStorage.getItem(name);
+
+                    $('input[value="' + value + '"][name="' + name + '"]').prop('checked', true);
+
+                });
+
+
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                if ($('input[value="oui"][name="Q9"]').prop("checked") == true) {
+                    $('#table-q9').show();
+                }
+                if ($('input[value="oui"][name="Q10"]').prop("checked") == true) {
+                    $('#table-q10').show();
+                }
+                if ($('input[value="oui"][name="Q11"]').prop("checked") == true) {
+                    $('#table-q11').show();
+                }
+
+                //                      $('#q_form').keypress(function(ev)
+                //    if (ev.which === 13)
+                //        $('#next_btn').click();
+                //});
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                window.setInterval(function () {
+                    control_q7();
+                }, 50);
+
+                // calculer la valeur du %
+                for (i = 1; i < 7; i++)
+                {
+                    pourcentage('input#q7-' + i + '-1', '#q7-' + i + '-3');
+                }
+
+                // mise à jour de la valeur du %
+                if (id == 7) {
+                    for (i = 1; i < 7; i++)
+                    {
+                        refrech_pourcentage('q7-' + i + '-1', '#q7-' + i + '-3');
+                    }
+                }
+
+
+
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () { //Traitement Q9 - Q10 - Q11
+
+                /*    var values = [];
+                 var somme_sec = 0;
+                 values[1] = parseFloat(localStorage.getItem('q9-1-3'));
+                 values[2] = parseFloat(localStorage.getItem('q9-2-3'));
+                 values[3] = parseFloat(localStorage.getItem('q9-3-3'));
+                 values[4] = parseFloat(localStorage.getItem('q9-4-3'));
+                 values[5] = parseFloat(localStorage.getItem('q9-5-3'));
+                 values[6] = parseFloat(localStorage.getItem('q9-6-3'));
+                 values[7] = parseFloat(localStorage.getItem('q9-7-3'));
+                 values[8] = parseFloat(localStorage.getItem('q10-1-3'));
+                 values[9] = parseFloat(localStorage.getItem('q10-2-3'));
+                 values[10] = parseFloat(localStorage.getItem('q10-3-3'));
+                 values[11] = parseFloat(localStorage.getItem('q10-4-3'));
+                 values[12] = parseFloat(localStorage.getItem('q10-5-3'));
+                 values[13] = parseFloat(localStorage.getItem('q10-6-3'));
+                 values[14] = parseFloat(localStorage.getItem('q10-7-3'));
+                 values[15] = parseFloat(localStorage.getItem('q10-8-3'));
+                 values[16] = parseFloat(localStorage.getItem('q10-11-3'));
+                 values[17] = parseFloat(localStorage.getItem('q10-12-3'));
+                 values[18] = parseFloat(localStorage.getItem('q11-1-3'));
+                 values[19] = parseFloat(localStorage.getItem('q11-2-3'));
+                 values[20] = parseFloat(localStorage.getItem('q11-3-3'));
+                 values[21] = parseFloat(localStorage.getItem('q11-4-3'));
+                 values[22] = parseFloat(localStorage.getItem('q11-5-3'));
+                 values[23] = parseFloat(localStorage.getItem('q11-6-3'));
+                 values[24] = parseFloat(localStorage.getItem('q11-7-3'));
+                 values[25] = parseFloat(localStorage.getItem('q11-8-3'));
+                 values[26] = parseFloat(localStorage.getItem('q11-9-3'));
+                 
+                 for (i = 0; i < 26; i++) {
+                 values[i + 1] = isNaN(values[i + 1]) ? '0.00' : values[i + 1]; // pour ne pas afficher NAN
+                 somme_sec = parseFloat(somme_sec) + parseFloat(values[i + 1]);
+                 }
+                 */
+
+                if (id == 9) {
+                    window.setInterval(function () {
+                        control_q9();
+                    }, 500);
+
+                } else if (id == 10) {
+                    window.setInterval(function () {
+                        control_q10(control_q9());
+                    }, 500);
+                } else if (id == 11) {
+                    window.setInterval(function () {
+                        control_q11(control_q10(control_q9()));
+                    }, 500);
+                }
+                /* if (control_q11(control_q10(control_q9())) > total && id == 11) {
+                 $('#error_q11').empty();
+                 $('#error_q11').append("Le montant total des quantités dépasse le Total déchets de votre réponse dans Q4 (" + total + " " + total_unit + ")");
+                 href_next = base_url + 'index.php/home/page/' + survey + '/11';
+                 $("#next_btn").attr("href", href_next);
+                 
+                 }*/
+
+                /* if (id == 11) {
+                 $('#next_btn').click(function () {
+                 if (somme_sec > total) {
+                 alert("Le montant total dépasse le Total déchets de votre réponse dans Q4 (" + total + " " + total_unit + ")");
+                 
+                 href_next = base_url + 'index.php/home/page/' + survey + '/11';
+                 $("#next_btn").attr("href", href_next);
+                 }
+                 });
+                 }*/
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () { //Traitement Q14
+
+                if (id == 14) {
+                    window.setInterval(function () {
+                        control_q14();
+                    }, 500);
+                }
+
+                if (id == 38) {
+                    window.setInterval(function () {
+                        control_q38();
+                    }, 500);
+                }
+
+
+
+
+            });
+        </script>
+        <script>
+            $(document).ready(function () { //Traitement Q14
+                var values_q14 = [];
+                var somme_q14 = 0;
+                var values = [];
+                var somme_q14 = 0;
+                values_q14[1] = parseFloat($('input[name="Q14-1-2"]').val());
+                values_q14[2] = parseFloat($('input[name="Q14-2-2"]').val());
+                values_q14[3] = parseFloat($('input[name="Q14-3-2"]').val());
+                values_q14[4] = parseFloat($('input[name="Q14-4-2"]').val());
+                values_q14[5] = parseFloat($('input[name="Q14-5-2"]').val());
+
+                for (i = 0; i < 5; i++) {
+                    values_q14[i + 1] = isNaN(values_q14[i + 1]) ? '0.00' : values_q14[i + 1]; // pour ne pas afficher NAN
+                    somme_q14 = parseFloat(somme_q14) + parseFloat(values_q14[i + 1]);
+                }
+
+                if (id == 14) {
+                    $('#next_btn').click(function () {
+                        if (somme_q14 > total) {
+                            alert("Le montant total dépasse le Total déchets de votre réponse dans Q4");
+
+                        }
+                    });
+                }
+            });
+        </script>
+        <script>
+            $(document).ready(function () { //Traitement Q14
+
+                $('.useLocalSelect').change(function () {
+                    var key = $(this).attr('id');
+                    var value = $(this).val();
+                    localStorage.setItem(key, value)
+                });
+
+                var t = '';
+                $('.useLocalInput').keyup(function () {
+                    clearTimeout(t);
+                    var key = $(this).attr('id');
+                    var value = $(this).val();
+                    t = setTimeout(function () {
+                        localStorage.setItem(key, value)
+                    }, 1000);
+                });
+
+                //var r = '';
+                //$('.useLocalRadio input[type="radio"]:checked').each(function () {
+                //    clearTimeout(t);
+                //    var name = $(this).attr('name');
+                //    var value = $(this).val();
+                //    
+                //    r = setTimeout(function () {
+                //        localStorage.setItem(name, value)
+                //    }, 1000);
+                //});
+
+
+
+                $('.useLocal').each(function () {
+                    var key = $(this).attr('id');
+                    if (localStorage.getItem(key)) {
+                        $(this).val(localStorage.getItem(key));
+                    }
+                });
+
+
+
+
+                $('.clearLocalSelect').click(function () {
+                    $('.useLocalSelect').each(function () {
+                        $(this).val('');
+                        var key = $(this).attr('id');
+                        localStorage.removeItem(key);
+                    });
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+//                $('input').click(function (e) {
+//                    if (e.keyCode == 13) {
+//                        e.preventDefault();
+//                        $('#next_btn').click();
+//                    }
+//
+//                });
+var next = $('#next_btn')[0];
+$(window).keydown(function (e) {
+    if ( e.which === 13 ) {
+        window.location.href = next.href;        
+    }
 });
             });
         </script>
-        
-         <script>  
-         $(document).ready(function () {
-             
-             // restoration des valeurs des inputs // les vqleurs nonetre déruire en cliquant sur le bouton 'logout' 
-    $('input[type="text"]').each(function(){    
-        var id = $(this).attr('id');
-        var value = localStorage.getItem(id);
-        
-        $(this).val(value);
-        
-    }); 
-    $('input[type="radio"]').each(function(){    
-        var name = $(this).attr('name');
-        var value = localStorage.getItem(name);
-        
-       $('input[value="' + value + '"][name="' + name + '"]').prop('checked', true);
-        
-    }); 
-});
-   </script>
+
+        <script>
+            function maxLengthCheck(object) {
+                if (object.value.length > object.maxLength)
+                    object.value = object.value.slice(0, object.maxLength)
+            }
+
+            function isNumeric(evt) {
+                var theEvent = evt || window.event;
+                var key = theEvent.keyCode || theEvent.which;
+                key = String.fromCharCode(key);
+                var regex = /[0-9]|\./;
+                if (!regex.test(key)) {
+                    theEvent.returnValue = false;
+                    if (theEvent.preventDefault)
+                        theEvent.preventDefault();
+                }
+            }
+        </script>
     </body>
 
 </html>
