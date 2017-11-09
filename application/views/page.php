@@ -22,8 +22,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var array_IDs = <?php echo $array_IDs_json; ?>;
         var total = parseFloat(localStorage.getItem('q4-1-1'));
         var total_unit = localStorage.getItem('q4-1-2');
+        if(total_unit == null){
+                total_unit = '';
+            }
         var total_q13 = parseFloat(localStorage.getItem('q13-1-1'));
         var total_q13_unit = localStorage.getItem('q13-1-2');
+        if(total_q13_unit == null){
+                total_unit = '';
+            }
 
     </script>
     <?php $action = 'home/load_question/' . $survey . '/' . $id; ?>

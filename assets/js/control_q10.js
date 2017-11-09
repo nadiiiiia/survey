@@ -7,11 +7,13 @@ function control_q10(somme) {
         if (input == null || input == NaN || input == '') {
             input = 0;
         }
-        //  alert(input);
+        
         somme = parseFloat(somme) + parseFloat(input); // calculer la somme des valeurs
-        // alert(somme);
+        
     }
         if (somme > total && id == 10) {
+        $('#error_q10').empty();
+        $('#error_q10').append("Le montant total des quantités dépasse le Total déchets de votre réponse dans Q4 (" + total + " " + total_unit + ")");
         $('#error_q10').show();
 
 //        $('#next_btn').click(function () {

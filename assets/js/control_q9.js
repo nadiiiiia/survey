@@ -11,6 +11,8 @@ function control_q9() {
     }
 
     if (somme > total && id == 9) {
+        $('#error_q9').empty();
+        $('#error_q9').append("Le montant total des quantités dépasse le Total déchets de votre réponse dans Q4 (" + total + " " + total_unit + ")");
         $('#error_q9').show();
 //
 //        $('#next_btn').click(function () {

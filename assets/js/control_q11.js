@@ -18,8 +18,8 @@ function control_q11(somme) {
 //        $('#next_btn').click(function () {
 //            $("#next_btn").attr("href", "#");
 //        });
-//    } else {
-//        $('#error_q11').hide();
+    } else {
+        $('#error_q11').hide();
 //        $('#next_btn').click(function () {
 //            $("#next_btn").attr("href", href_next);
 //        });
