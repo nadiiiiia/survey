@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </head>
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
+        var user_id = "<?php echo $id_user_connected; ?>";
         var id = <?php echo $id; ?>;
         var survey = <?php echo $survey; ?>;
         var id_next = id + 1;
@@ -22,14 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var array_IDs = <?php echo $array_IDs_json; ?>;
         var total = parseFloat(localStorage.getItem('q4-1-1'));
         var total_unit = localStorage.getItem('q4-1-2');
-        if(total_unit == null){
-                total_unit = '';
-            }
+        if (total_unit == null) {
+            total_unit = 'Tonnes';
+        }
         var total_q13 = parseFloat(localStorage.getItem('q13-1-1'));
         var total_q13_unit = localStorage.getItem('q13-1-2');
-        if(total_q13_unit == null){
-                total_unit = '';
-            }
+        if (total_q13_unit == null) {
+            total_unit = 'Tonnes';
+        }
 
     </script>
     <?php $action = 'home/load_question/' . $survey . '/' . $id; ?>
@@ -47,6 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!-- Footer here-->
         <?php // include('include/footer.php'); ?>
+
+        <div id="res"></div>
 
         <!-- SCRIPTS here -->
         <?php include('include/scripts.php'); ?>
@@ -76,10 +79,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             /// Règles générales des boutons suivant et précédent
             href_next = base_url + 'index.php/home/page/' + survey + '/' + id_next;
             $("#next_btn").attr("href", href_next);
-            
+
             href_back = base_url + 'index.php/home/page/' + survey + '/' + id_back;
             $("#back_btn").attr("href", href_back);
-           
+
             /// Règles spécifiques selon les id               
             if (id == 1)
             {
@@ -88,12 +91,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         href_next = base_url + 'index.php/home/page/' + survey + '/3'; //if q1 == oui
                         $("#next_btn").attr("href", href_next);
                     }
+                    var Q1 = localStorage.getItem('Q1');
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+                        data: {"answer_body": Q1, "question_id": question_id, "user_id": user_id},
+                        dataType: "json"
+                    });
                 });
                 $('#back_btn').hide();
             }
 
             if (id == 2) {
                 $('#next_btn').click(function () {
+
+                    var Q2 = localStorage.getItem('q2');
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+                        data: {"answer_body": Q2, "question_id": question_id, "user_id": user_id},
+                        dataType: "json"
+                    });
+
                     href_next = base_url + 'index.php/home/page/' + survey + '/25'; //if q3 == non
                     $("#next_btn").attr("href", href_next);
 
@@ -104,6 +123,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('#next_btn').click(function () {
                     if ($('input[value="non"][name="Q3"]').prop("checked") == true) {
                         href_next = base_url + 'index.php/home/page/' + survey + '/5'; //if q3 == non
+
+                        var Q3 = localStorage.getItem('Q3');
+                        $.ajax({
+                            type: "post",
+                            url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+                            data: {"answer_body": Q3, "question_id": question_id, "user_id": user_id},
+                            dataType: "json"
+
+                        });
                         $("#next_btn").attr("href", href_next);
                     }
                 });
@@ -124,6 +152,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $("#back_btn").click(function () {
                     $(this).attr("href", href_back);
                 });
+
+                var Q5 = localStorage.getItem('Q5');
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+                    data: {"answer_body": Q5, "question_id": question_id, "user_id": user_id},
+                    dataType: "json"
+                });
             }
             if (id == 8) {
                 $('#next_btn').click(function () {
@@ -131,6 +167,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         href_next = base_url + 'index.php/home/page/' + survey + '/13'; //if q8 == non
                         $("#next_btn").attr("href", href_next);
                     }
+
+                    var Q8 = localStorage.getItem('Q8');
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+                        data: {"answer_body": Q8, "question_id": question_id, "user_id": user_id},
+                        dataType: "json"
+                    });
                 });
             }
 
@@ -169,23 +213,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             if (id == 19) {
                 $('#next_btn').click(function () {
-                    if ( $('input[value="non"][name="Q19"]').prop("checked") == true) {
+                    if ($('input[value="non"][name="Q19"]').prop("checked") == true) {
                         href_next = base_url + 'index.php/home/page/' + survey + '/21';
                         $("#next_btn").attr("href", href_next);
                     }
                 });
             }
-             if (id == 25) {
+            if (id == 25) {
                 $('#next_btn').click(function () {
-                    if ( $('input[value="non"][name="Q25"]').prop("checked") == true) {
+                    if ($('input[value="non"][name="Q25"]').prop("checked") == true) {
                         href_next = base_url + 'index.php/home/page/' + survey + '/27';
                         $("#next_btn").attr("href", href_next);
                     }
                 });
             }
-              if (id == 27) {
+            if (id == 27) {
                 $('#next_btn').click(function () {
-                    if ( $('input[value="non"][name="Q27"]').prop("checked") == true) {
+                    if ($('input[value="non"][name="Q27"]').prop("checked") == true) {
                         href_next = base_url + 'index.php/home/page/' + survey + '/29';
                         $("#next_btn").attr("href", href_next);
                     }
@@ -195,9 +239,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             if (id == array_IDs.length)
             {
+
                 $("#next_btn").html("Valider");
                 $("#next_btn").click(function () {
-                    $(this).attr("href", '#');
+
+                    $(this).attr("href", "#");
+
                 });
             }
 
@@ -267,79 +314,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-            /*fonction pour enregistrer les valeurs en cliquant sur suivant*/
-            $('#next_btn').on('click', function () {
 
-                /* $('input[type="text"]').each(function(){    
-                 var id = $(this).attr('id');
-                 var value = $(this).val();
-                 localStorage.setItem(id, value);
-                 
-                 });   
-                 
-                 var t = '';
-                 $('input[type="text"]').keyup(function () {
-                 clearTimeout(t);
-                 var key = $(this).attr('id');
-                 var value = $(this).val();
-                 t = setTimeout(function () {
-                 localStorage.setItem(key, value)
-                 }, 2000);
-                 });
-                 
-                 $('select option').each(function(index,item){
-                 var id = $(this).attr('id');
-                 localStorage.setItem('id',item);
-                 });
-                 */
-                $('input[type="radio"]:checked').each(function () {
-                    var name = $(this).attr('name');
-                    var value = $(this).val();
-                    localStorage.setItem(name, value);
-
-                });
-
-            });
         });
         </script>
 
         <script>
-            $(document).ready(function () {
+            $(document).ready(function () {  // LocalStorage
 
                 $('input').addClass("useLocal useLocalInput");
                 $('input[type="checkbox"]').addClass("useLocal useLocalInput");
                 $('select').addClass("useLocal useLocalSelect");
-                //$('input[type="radio"]').addClass("useLocalRadio");
-                //  relode function every 5 seconds
-//         window.setInterval(function(){
-//             reload_data();
-//        }, 5000);
 
-                // restoration des valeurs des inputs // les vqleurs nonetre déruire en cliquant sur le bouton 'logout' 
-                /*$('input[type="text"]').each(function(){    
-                 var id = $(this).attr('id');
-                 var value = localStorage.getItem(id);
-                 
-                 $(this).val(value);
-                 }); //
-                 
-                 $('input[type="text"]').each(function () {
-                 var key = $(this).attr('id');
-                 if (localStorage.getItem(key)) {
-                 $(this).val(localStorage.getItem(key));
-                 }
-                 });
-                 */
+                ///////// Setters///////
+                window.setInterval(function () {
+                    $('.useLocalSelect').change(function () {
+                        var key = $(this).attr('id');
+                        var value = $(this).val();
+                        localStorage.setItem(key, value)
+                    });
+                }, 500);
+
+                window.setInterval(function () {
+                    $('.useLocalInput').keyup(function () {
+                        var key = $(this).attr('id');
+                        var value = $(this).val();
+                        localStorage.setItem(key, value)
+                    });
+                }, 500);
+
+                /*fonction pour enregistrer les valeurs des radio en cliquant sur suivant*/
+
+                window.setInterval(function () {
+                    $('input[type="radio"]:checked').each(function () {
+                        var name = $(this).attr('name');
+                        var value = $(this).val();
+                        localStorage.setItem(name, value);
+                    });
+                }, 500);
+
+
+                ////////Getters////////
+                $('.useLocal').each(function () {
+                    var key = $(this).attr('id');
+                    if (localStorage.getItem(key)) {
+                        $(this).val(localStorage.getItem(key));
+                    }
+                });
 
                 $('input[type="radio"]').each(function () {
                     var name = $(this).attr('name');
                     var value = localStorage.getItem(name);
-
                     $('input[value="' + value + '"][name="' + name + '"]').prop('checked', true);
-
                 });
 
-
+//                $('.clearLocalSelect').click(function () {
+//                    $('.useLocalSelect').each(function () {
+//                        $(this).val('');
+//                        var key = $(this).attr('id');
+//                        localStorage.removeItem(key);
+//                    });
+//                });
             });
         </script>
         <script>
@@ -387,42 +421,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <script>
             $(document).ready(function () { //Traitement Q9 - Q10 - Q11
-
-                /*    var values = [];
-                 var somme_sec = 0;
-                 values[1] = parseFloat(localStorage.getItem('q9-1-3'));
-                 values[2] = parseFloat(localStorage.getItem('q9-2-3'));
-                 values[3] = parseFloat(localStorage.getItem('q9-3-3'));
-                 values[4] = parseFloat(localStorage.getItem('q9-4-3'));
-                 values[5] = parseFloat(localStorage.getItem('q9-5-3'));
-                 values[6] = parseFloat(localStorage.getItem('q9-6-3'));
-                 values[7] = parseFloat(localStorage.getItem('q9-7-3'));
-                 values[8] = parseFloat(localStorage.getItem('q10-1-3'));
-                 values[9] = parseFloat(localStorage.getItem('q10-2-3'));
-                 values[10] = parseFloat(localStorage.getItem('q10-3-3'));
-                 values[11] = parseFloat(localStorage.getItem('q10-4-3'));
-                 values[12] = parseFloat(localStorage.getItem('q10-5-3'));
-                 values[13] = parseFloat(localStorage.getItem('q10-6-3'));
-                 values[14] = parseFloat(localStorage.getItem('q10-7-3'));
-                 values[15] = parseFloat(localStorage.getItem('q10-8-3'));
-                 values[16] = parseFloat(localStorage.getItem('q10-11-3'));
-                 values[17] = parseFloat(localStorage.getItem('q10-12-3'));
-                 values[18] = parseFloat(localStorage.getItem('q11-1-3'));
-                 values[19] = parseFloat(localStorage.getItem('q11-2-3'));
-                 values[20] = parseFloat(localStorage.getItem('q11-3-3'));
-                 values[21] = parseFloat(localStorage.getItem('q11-4-3'));
-                 values[22] = parseFloat(localStorage.getItem('q11-5-3'));
-                 values[23] = parseFloat(localStorage.getItem('q11-6-3'));
-                 values[24] = parseFloat(localStorage.getItem('q11-7-3'));
-                 values[25] = parseFloat(localStorage.getItem('q11-8-3'));
-                 values[26] = parseFloat(localStorage.getItem('q11-9-3'));
-                 
-                 for (i = 0; i < 26; i++) {
-                 values[i + 1] = isNaN(values[i + 1]) ? '0.00' : values[i + 1]; // pour ne pas afficher NAN
-                 somme_sec = parseFloat(somme_sec) + parseFloat(values[i + 1]);
-                 }
-                 */
-
                 if (id == 9) {
                     window.setInterval(function () {
                         control_q9();
@@ -437,24 +435,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         control_q11(control_q10(control_q9()));
                     }, 500);
                 }
-                /* if (control_q11(control_q10(control_q9())) > total && id == 11) {
-                 $('#error_q11').empty();
-                 $('#error_q11').append("Le montant total des quantités dépasse le Total déchets de votre réponse dans Q4 (" + total + " " + total_unit + ")");
-                 href_next = base_url + 'index.php/home/page/' + survey + '/11';
-                 $("#next_btn").attr("href", href_next);
-                 
-                 }*/
-
-                /* if (id == 11) {
-                 $('#next_btn').click(function () {
-                 if (somme_sec > total) {
-                 alert("Le montant total dépasse le Total déchets de votre réponse dans Q4 (" + total + " " + total_unit + ")");
-                 
-                 href_next = base_url + 'index.php/home/page/' + survey + '/11';
-                 $("#next_btn").attr("href", href_next);
-                 }
-                 });
-                 }*/
             });
         </script>
 
@@ -472,10 +452,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         control_q38();
                     }, 500);
                 }
-
-
-
-
             });
         </script>
         <script>
@@ -508,52 +484,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script>
             $(document).ready(function () { //Traitement Q14
 
-                $('.useLocalSelect').change(function () {
-                    var key = $(this).attr('id');
-                    var value = $(this).val();
-                    localStorage.setItem(key, value)
-                });
 
-                var t = '';
-                $('.useLocalInput').keyup(function () {
-                    clearTimeout(t);
-                    var key = $(this).attr('id');
-                    var value = $(this).val();
-                    t = setTimeout(function () {
-                        localStorage.setItem(key, value)
-                    }, 1000);
-                });
-
-                //var r = '';
-                //$('.useLocalRadio input[type="radio"]:checked').each(function () {
-                //    clearTimeout(t);
-                //    var name = $(this).attr('name');
-                //    var value = $(this).val();
-                //    
-                //    r = setTimeout(function () {
-                //        localStorage.setItem(name, value)
-                //    }, 1000);
-                //});
-
-
-
-                $('.useLocal').each(function () {
-                    var key = $(this).attr('id');
-                    if (localStorage.getItem(key)) {
-                        $(this).val(localStorage.getItem(key));
-                    }
-                });
-
-
-
-
-                $('.clearLocalSelect').click(function () {
-                    $('.useLocalSelect').each(function () {
-                        $(this).val('');
-                        var key = $(this).attr('id');
-                        localStorage.removeItem(key);
-                    });
-                });
             });
         </script>
         <script>

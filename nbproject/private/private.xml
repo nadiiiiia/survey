@@ -5,10 +5,7 @@
         <group>
             <file>file:/C:/wamp64/www/survey/application/views/accueil.php</file>
             <file>file:/C:/wamp64/www/survey/application/controllers/Home.php</file>
-            <file>file:/C:/wamp64/www/survey/application/models/SurveyModel.php</file>
             <file>file:/C:/wamp64/www/survey/application/views/page.php</file>
-            <file>file:/C:/wamp64/www/survey/assets/css/style.css</file>
-            <file>file:/C:/wamp64/www/survey/application/views/include/survey_btn.php</file>
             <file>file:/C:/wamp64/www/survey/application/views/include/survey_body.php</file>
             <file>file:/C:/wamp64/www/survey/application/config/routes.php</file>
             <file>file:/C:/wamp64/www/survey/application/views/survey.php</file>

@@ -1,1 +1,1 @@
-<div class='md-form'><input type='text' id='q2' class='form-control'value=''></div>
+<div class='md-form'><input type='text' id='q2' name="Q2" class='form-control'></div>

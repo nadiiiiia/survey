@@ -7,7 +7,8 @@
             <!--Section: Dynamic content wrapper-->
             <section  class="mb-5">
 
-                <?php $attribut = array('name' => 'q_form');
+                <?php $action =  base_url()."index.php/home/set_answers/" ;
+                $attribut = array('name' => 'q_form');
                 echo form_open($action, $attribut);
                 ?> 
                 <h2><span class="badge blue"></span> </h2>   <!--Titre de la Section-->
@@ -35,6 +36,7 @@
                         <a href="" id="next_btn" class="btn cyan-darken-3-color btn-sm waves-effect waves-light pull-right">suivant</a>
 
                         <a href="" id="back_btn" class="btn cyan-darken-3-color btn-sm waves-effect waves-light pull-left"  >précédent</a>
+                   
                     </div>
                 </div>
                 <!-- End Survey btn-->
