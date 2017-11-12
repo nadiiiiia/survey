@@ -91,5 +91,35 @@ class Home extends Home_Controller {
 <br> vous allez recevoir un E-mail dans quelques minutes.</div>');
         }
     }
+    
+      public function set_answers_q7() {
+          //$data = json_encode($data_json, true);
+          $answer_body = $this->input->post('answer_body');
+//          var_dump($result);
+//          die;
+          
+           $result = array();
+           $element = array();
+////
+            foreach ($answer_body as $cle => $valeur) {
+                $data = array_values($valeur);
+                $element['question_id'] = $data[5];
+                $element['user_id'] = $data[4];
+                $element['activity_id'] = $data[0];
+                $element['qte'] = $data[1];
+                $element['unit'] = $data[2];
+                $element['percent'] = $data[3];
+                $result[] = $element;
+            }
+            
+          foreach ($result as $row) {
+           $this->AnswerModel->addAnswerActivity($row) ;
+          }
+          
+//      $this->output->set_content_type('application/json');
+//        $this->output->set_output(json_encode($result));
+//        return $result;
+//       
+   }
 
 }

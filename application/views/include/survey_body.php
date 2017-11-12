@@ -7,7 +7,7 @@
             <!--Section: Dynamic content wrapper-->
             <section  class="mb-5">
 
-                <?php $action =  base_url()."index.php/home/set_answers/" ;
+                <?php $action =  base_url()."index.php/home/set_answers_q7/" ;
                 $attribut = array('name' => 'q_form');
                 echo form_open($action, $attribut);
                 ?> 

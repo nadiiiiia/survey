@@ -29,6 +29,36 @@ Class AnswerModel extends CI_Model {
             }
         }
     }
+     public function addAnswerActivity($data) {
+        $question_id = $data['question_id'];
+        $user_id = $data['user_id'];
+        $qte =  $data['qte'];
+        $unit =  $data['unit'];
+        $percent =  $data['percent'];
+        $this->db->select('*');
+        $this->db->from('survey_activity_ans');
+        $this->db->where('user_id', $user); //le meme utilisateur
+        $this->db->where('question_id', $question_id); //la meme question
+        
+        if ($this->db->count_all_results() == 0) { /// traitement si la réponse n'existe pas --> insert
+            if ($this->db->insert('survey_activity_ans', $data)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {  /// traitement si la réponse existe --> update
+            if ($this->db->set('qte', $qte)
+                            ->set('unit', $unit)
+                            ->set('percent', $percent)
+                            ->where('question_id', $question_id)
+                            ->where('user_id', $user)
+                            ->update('survey_activity_ans')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
 }
 

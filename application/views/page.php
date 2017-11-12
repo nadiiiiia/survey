@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php // include('include/footer.php'); ?>
 
         <div id="res"></div>
+        <button id="btnShow2"></button>
 
         <!-- SCRIPTS here -->
         <?php include('include/scripts.php'); ?>
@@ -73,6 +74,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('#error_q11').hide();
             $('#error_q14').hide();
             $('#error_q38').hide();
+            $('.hidden').hide();
+            $('.user').val(user_id);
+            $('.question').val(question_id);
+           
 
 
 
@@ -86,18 +91,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             /// Règles spécifiques selon les id               
             if (id == 1)
             {
+                var Q1;
                 $('#next_btn').click(function () {
                     if ($('input[type=radio]').prop("checked") == true && $('input[type=radio]').prop("id") == "q1-oui") {
                         href_next = base_url + 'index.php/home/page/' + survey + '/3'; //if q1 == oui
                         $("#next_btn").attr("href", href_next);
+                        Q1 = 'oui';
+
+
+                    } else {
+                        Q1 = 'non'
                     }
-                    var Q1 = localStorage.getItem('Q1');
+                    // Q1 = localStorage.getItem('Q1');
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url(); ?>index.php/home/set_answers/",
                         data: {"answer_body": Q1, "question_id": question_id, "user_id": user_id},
                         dataType: "json"
                     });
+
                 });
                 $('#back_btn').hide();
             }
@@ -105,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             if (id == 2) {
                 $('#next_btn').click(function () {
 
-                    var Q2 = localStorage.getItem('q2');
+                    var Q2 = $('[name=Q2]').val();
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url(); ?>index.php/home/set_answers/",
@@ -123,17 +135,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('#next_btn').click(function () {
                     if ($('input[value="non"][name="Q3"]').prop("checked") == true) {
                         href_next = base_url + 'index.php/home/page/' + survey + '/5'; //if q3 == non
-
-                        var Q3 = localStorage.getItem('Q3');
-                        $.ajax({
-                            type: "post",
-                            url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-                            data: {"answer_body": Q3, "question_id": question_id, "user_id": user_id},
-                            dataType: "json"
-
-                        });
+                        Q3 = 'non';
                         $("#next_btn").attr("href", href_next);
+                    } else {
+                        Q3 = 'oui';
                     }
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+                        data: {"answer_body": Q3, "question_id": question_id, "user_id": user_id},
+                        dataType: "json"
+                    });
+
                 });
                 href_back = base_url + 'index.php/home/page/' + survey + '/1';
                 $("#back_btn").click(function () {
@@ -152,7 +165,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $("#back_btn").click(function () {
                     $(this).attr("href", href_back);
                 });
-
+                if ($('input[name="Q5"]').prop("checked") == true) {
+                    alert($(this).val());
+                }
                 var Q5 = localStorage.getItem('Q5');
                 $.ajax({
                     type: "post",
@@ -412,9 +427,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     {
                         refrech_pourcentage('q7-' + i + '-1', '#q7-' + i + '-3');
                     }
+
+                    var array = [];
+                    //$("#btnShow2").on("click", function () {
+                    $("tr:nth-child(n+1)").each(function () {
+                        rowData = $(this).find('input, select').serializeArray();
+                        var rowAr = {};
+                        $.each(rowData, function (e, v) {
+                            rowAr[v['name']] = v['value'];
+                        });
+                        array.push(rowAr);
+                    });
+//                        console.log(array);
+//                    });
+//alert(array[3].unit);
+                    var Q7 = array;
+//                    $("#next_btn").click(function () {
+//                        href_next = base_url + 'index.php/home/set_answers_q7/' + array;
+//                        $("#next_btn").attr("href", href_next);
+//
+//                    });
+
+
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url();  ?>index.php/home/set_answers_q7/",
+                        data: {"answer_body": Q7},
+                        dataType: "json",
+//                         success: function (result) {
+//                             console.log(result);
+//                            
+//                        }
+                        
+                    });
                 }
-
-
 
             });
         </script>
@@ -481,12 +527,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
             });
         </script>
-        <script>
-            $(document).ready(function () { //Traitement Q14
 
-
-            });
-        </script>
         <script>
             $(document).ready(function () {
 //                $('input').click(function (e) {
