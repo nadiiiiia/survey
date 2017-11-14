@@ -1,6 +1,6 @@
 <div class='row'>
     <div class='col-lg-3 col-md-12 mb-r'>
-        <input type='text' name='Q13-1' id='q13-1-1'>
+        <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  name='Q13-1' id='q13-1-1'>
     </div>
     <div class='col-lg-3 col-md-12 mb-r'>
         <select id='q13-1-2' name='Q13-2' class='mdb-select initialized'>

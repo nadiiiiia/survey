@@ -2,7 +2,7 @@
     -la quantité totale de déchets générés sur vos chantiers en 2015 ?
 </div>
 <div class='row'><div class='col-lg-3 col-md-12 mb-r'>
-        <input type='text' id='q4-1-1'></div>
+        <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  id='q4-1-1'></div>
     <div class='col-lg-3 col-md-12 mb-r'>
         <select id='q4-1-2' class='mdb-select initialized'>
             <option value='tonnes'>Tonnes</option>
@@ -17,7 +17,7 @@
 
 <div class='row'>
     <div class='col-lg-3 col-md-12 mb-r'>
-        <input type='text' id='q4-2-1'></div>
+        <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  id='q4-2-1'></div>
     <div class='col-lg-3 col-md-12 mb-r'>
         <select id='q4-2-2' class='mdb-select initialized'>
             <option value='tonnes'>Tonnes</option>

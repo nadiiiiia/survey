@@ -19,6 +19,7 @@ class Home extends Home_Controller {
 
 // load libraries
         $this->load->library('session');
+        $this->load->library('Pdf_Library');
     }
 
     public function accueil() {
@@ -78,48 +79,98 @@ class Home extends Home_Controller {
 
     public function set_answers() {
         $answer = $this->input->post('answer_body');
-       $user = $this->input->post('user_id');
-       $question = $this->input->post('question_id');
-      
-       $answer_data = array(
+        $user = $this->input->post('user_id');
+        $question = $this->input->post('question_id');
+
+        $answer_data = array(
             'answer_question_id' => $question,
             'user' => $user,
             'answer_body' => $answer);
 
-       if ($this->AnswerModel->addAnswer($answer_data)) {
-            $this->session->set_flashdata('msg', '<div style="margin: 75 150 0px;" class="alert alert-success text-center">Insertion avec succès !!
-<br> vous allez recevoir un E-mail dans quelques minutes.</div>');
+        $this->AnswerModel->addAnswer($answer_data);
+    }
+
+    public function set_answers_q7() {
+
+        $answer_body = $this->input->post('answer_body');
+
+        $result = array();
+        $element = array();
+
+        foreach ($answer_body as $cle => $valeur) {
+            $data = array_values($valeur);
+            $element['question_id'] = $data[5];
+            $element['user_id'] = $data[4];
+            $element['activity_id'] = $data[0];
+            $element['qte'] = $data[1];
+            $element['unit'] = $data[2];
+            $element['percent'] = $data[3];
+            $result[] = $element;
+        }
+
+        foreach ($result as $row) {
+            $this->AnswerModel->addAnswerActivity($row);
         }
     }
-    
-      public function set_answers_q7() {
-          //$data = json_encode($data_json, true);
-          $answer_body = $this->input->post('answer_body');
-//          var_dump($result);
-//          die;
-          
-           $result = array();
-           $element = array();
-////
-            foreach ($answer_body as $cle => $valeur) {
-                $data = array_values($valeur);
-                $element['question_id'] = $data[5];
-                $element['user_id'] = $data[4];
-                $element['activity_id'] = $data[0];
-                $element['qte'] = $data[1];
-                $element['unit'] = $data[2];
-                $element['percent'] = $data[3];
-                $result[] = $element;
-            }
-            
-          foreach ($result as $row) {
-           $this->AnswerModel->addAnswerActivity($row) ;
-          }
-          
-//      $this->output->set_content_type('application/json');
-//        $this->output->set_output(json_encode($result));
-//        return $result;
-//       
-   }
+    public function set_answers_q14() {
+
+        $answer_body = $this->input->post('answer_body');
+
+        $result = array();
+        $element = array();
+
+        foreach ($answer_body as $cle => $valeur) {
+            $data = array_values($valeur);
+            $element['question_id'] = $data[3];
+            $element['user_id'] = $data[2];
+            $element['row_id'] = $data[4];
+            $element['nom'] = $data[0];
+            $element['qte'] = $data[1];
+            $result[] = $element;
+        }
+
+        foreach ($result as $row) {
+            $this->AnswerModel->addAnswerDepartement($row);
+        }
+    }
+
+    public function set_answers_array() {
+
+        $answer = $this->input->post('answer_body');
+
+        if ($answer != null) {
+            $answer = implode(",", $answer);  // (implode) Join array elements with a string
+        } else {
+            $answer = $answer;
+        }
+        $user = $this->input->post('user_id');
+        $question = $this->input->post('question_id');
+
+        $answer_data = array(
+            'answer_question_id' => $question,
+            'user' => $user,
+            'answer_body' => $answer);
+        
+         $this->AnswerModel->addAnswer($answer_data);
+    }
+
+    public function set_answers_test() {
+
+        $result = $this->input->post('answer_body');
+
+
+
+        $this->output->set_content_type('application/json');
+        $this->output->set_output(json_encode($result));
+        return $result;
+    }
+
+    public function generate_pdf_survey() {
+        $this->data["action"] = 'attach';
+        $this->load->view('surveyReport', $this->data);
+    }
+    public function fin() {
+        $this->load->view('fin', $this->data);
+    }
 
 }
