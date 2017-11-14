@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if (total_q13_unit == null) {
             total_unit = 'Tonnes';
         }
-
+        
     </script>
     <?php $action = 'home/load_question/' . $survey . '/' . $id; ?>
     <body>
@@ -432,6 +432,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     });
                 });
             }
+            if (id == 18) {
+
+//                var array = [];
+//                $("#btnShow2").on("click", function () {
+//                    $("tr:nth-child(n+1)").each(function () {
+//                        rowData = $(this).find('input').serializeArray();
+//                        var rowAr = {};
+//                        $.each(rowData, function (e, v) {
+//                            rowAr[v['name']] = v['value'];
+//                        });
+//                        array.push(rowAr);
+//                    });
+//                    console.log(array);
+//                });
+//
+//                $('#next_btn').click(function () {
+//                    var Q17 = localStorage.getItem('q17');
+//                    $.ajax({
+//                        type: "post",
+//                        url: base_url + "index.php/home/set_answers/",
+//                        data: {"answer_body": Q17, "question_id": question_id, "user_id": user_id},
+//                        dataType: "json",
+////                    success: function (result) {
+////                        console.log(result);
+////                    }
+//                    });
+//                });
+            }
+
 
             if (id == 19) {
                 $('#next_btn').click(function () {
