@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if (total_q13_unit == null) {
             total_unit = 'Tonnes';
         }
-        
+
     </script>
     <?php $action = 'home/load_question/' . $survey . '/' . $id; ?>
     <body>
@@ -62,6 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q11.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q14.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q38.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/insertAnswer.js"></script>
 
         <script type="text/javascript">
         $(document).ready(function () {
@@ -88,65 +89,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             href_back = base_url + 'index.php/home/page/' + survey + '/' + id_back;
             $("#back_btn").attr("href", href_back);
 
+
+//                   var functionsArray = [];
+//            for (i = 1; i < 39; i++) {
+//                functionsArray[i] = 'insertQ' + i;
+//            }
+//
+//
+//            for (i = 1; i < 3; i++)
+//            {
+//                if (id == 2) {
+//                    $(window).keydown(function (e) {
+//                        if (e.which === 13) {
+//                            functionsArray[i]; 
+//                            window.location.href = href_next;
+//                        }
+//                    });
+//                    $('#next_btn').click(function () {
+//                        functionsArray[i];
+//                    });
+//                }
+//            }
+
             /// Règles spécifiques selon les id               
             if (id == 1)
             {
-                var Q1;
-                $('#next_btn').click(function () {
-                    if ($('input[type=radio]').prop("checked") == true && $('input[type=radio]').prop("id") == "q1-oui") {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/3'; //if q1 == oui
-                        $("#next_btn").attr("href", href_next);
-                        Q1 = 'oui';
-
-
-                    } else {
-                        Q1 = 'non'
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ1();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-                    // Q1 = localStorage.getItem('Q1');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q1, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
-
                 });
+                $('#next_btn').click(function () {
+                    insertQ1(); //voir le dossier assets/js
+                });
+
                 $('#back_btn').hide();
             }
 
             if (id == 2) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ2();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
+
                 $('#next_btn').click(function () {
-
-                    var Q2 = localStorage.getItem('q2');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q2, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
-
-                    href_next = base_url + 'index.php/home/page/' + survey + '/25'; //if q3 == non
-                    $("#next_btn").attr("href", href_next);
-
+                    insertQ2();
                 });
             }
 
             if (id == 3) {
-                $('#next_btn').click(function () {
-                    if ($('input[value="non"][name="Q3"]').prop("checked") == true) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/5'; //if q3 == non
-                        Q3 = 'non';
-                        $("#next_btn").attr("href", href_next);
-                    } else {
-                        Q3 = 'oui';
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ3();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q3, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
-
+                });
+                $('#next_btn').click(function () {
+                    insertQ3();
                 });
                 href_back = base_url + 'index.php/home/page/' + survey + '/1';
                 $("#back_btn").click(function () {
@@ -154,286 +156,209 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 });
             }
             if (id == 4) {
-
-                href_next = base_url + 'index.php/home/page/' + survey + '/7';
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ4();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $("#next_btn").click(function () {
-                    var Q4_1 = localStorage.getItem('q4-1-1');
-                    var Q4_2 = localStorage.getItem('q4-2-1');
-                    $(this).attr("href", href_next);
-                    var Q4 = [Q4_1, Q4_2];
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers_array/",
-                        data: {"answer_body": Q4, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
-
+                    insertQ4();
                 });
             }
 
             if (id == 5) {
-                var Q5;
-                href_back = base_url + 'index.php/home/page/' + survey + '/3';
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ5();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
+                $('#next_btn').click(function () {
+                    insertQ5();
+                });
                 $("#back_btn").click(function () {
                     $(this).attr("href", href_back);
                 });
-
-                $('#next_btn').click(function () {
-                    if ($('input[value="non"][name="Q5"]').prop("checked") == true) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/25'; //if q5 == non
-                        Q5 = 'non';
-                        $("#next_btn").attr("href", href_next);
-                    } else {
-                        Q5 = 'oui';
-                    }
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-                        data: {"answer_body": Q5, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
-
-                });
-
             }
 
             if (id == 6) {
-                $('#next_btn').click(function () {
-                    var min = localStorage.getItem('q6-1');
-                    var max = localStorage.getItem('q6-2');
-                    var Q6 = [min, max];
-                    if ($('input[value="non"][name="Q8"]').prop("checked") == true) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/13'; //if q6 == non
-                        $("#next_btn").attr("href", href_next);
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ6();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers_array/",
-                        data: {"answer_body": Q6, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                });
+                $('#next_btn').click(function () {
+                    insertQ6();
                 });
             }
 
 
             if (id == 8) {
-                $('#next_btn').click(function () {
-                    if ($('input[value="non"][name="Q8"]').prop("checked") == true) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/13'; //if q8 == non
-                        $("#next_btn").attr("href", href_next);
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ8();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-
-                    var Q8 = localStorage.getItem('Q8');
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-                        data: {"answer_body": Q8, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                });
+                $('#next_btn').click(function () {
+                    insertQ8();
                 });
             }
 
             if (id == 9) {
-                var Q9;
+
                 $('input[type="radio"]').click(function () {
                     if ($(this).prop("checked") == true && $(this).prop("id") == "q9-oui") {
                         $('#table-q9').show();
-                        Q9 = 'oui';
+
                     }
                 });
                 $('input[type="radio"]').click(function () {
                     if ($(this).prop("checked") == true && $(this).prop("id") == "q9-non") {
                         $('#table-q9').hide();
-                        Q9 = 'non';
+
+                    }
+                });
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ9();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
                 });
                 $('#next_btn').click(function () {
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-                        data: {"answer_body": Q9, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ9();
                 });
             }
 
             if (id == 10) {
-                var Q10;
+
                 $('input[type="radio"]').click(function () {
                     if ($(this).prop("checked") == true && $(this).prop("id") == "q10-oui") {
                         $('#table-q10').show();
-                        Q10 = 'oui';
+
                     }
                 });
                 $('input[type="radio"]').click(function () {
                     if ($(this).prop("checked") == true && $(this).prop("id") == "q10-non") {
                         $('#table-q10').hide();
-                        Q10 = 'non';
+
+                    }
+                });
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ10();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
                 });
                 $('#next_btn').click(function () {
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-                        data: {"answer_body": Q10, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ10();
                 });
             }
 
             if (id == 11) {
-                var Q11;
+
                 $('input[type="radio"]').click(function () {
                     if ($(this).prop("checked") == true && $(this).prop("id") == "q11-oui") {
                         $('#table-q11').show();
-                        Q11 = 'oui';
+
                     }
                 });
                 $('input[type="radio"]').click(function () {
                     if ($(this).prop("checked") == true && $(this).prop("id") == "q11-non") {
                         $('#table-q11').hide();
-                        Q11 = 'non';
+
+                    }
+                });
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ11();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
                 });
                 $('#next_btn').click(function () {
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-                        data: {"answer_body": Q11, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ11();
                 });
             }
             if (id == 12) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ12();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-                    var Q12 = localStorage.getItem('q12');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q12, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ12();
                 });
             }
 
             if (id == 13) {
-                $('#next_btn').click(function () {
-
-                    var q13 = parseFloat($('input[name="Q13-1"]').val());
-                    q13 = isNaN(q13) ? '0.00' : q13;
-
-                    if (q13 <= 0) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/15'; //if q8 == non
-                        $("#next_btn").attr("href", href_next);
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ13();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": q13, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
-
+                });
+                $('#next_btn').click(function () {
+                    insertQ13();
                 });
             }
             if (id == 14) {
-
-                function getTableQ14Data() {
-                    var array = [];
-                    //$("#btnShow2").on("click", function () {
-                    $("tr:nth-child(n+1)").each(function () {
-                        rowData = $(this).find('input').serializeArray();
-                        var rowAr = {};
-                        $.each(rowData, function (e, v) {
-                            rowAr[v['name']] = v['value'];
-                        });
-                        array.push(rowAr);
-                    });
-//                        console.log(array);
-//                    });
-                    return array;
-                }
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ14();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-                    //href_next = "#";
-                    $("#next_btn").attr("href", href_next);
-                    var Q14 = getTableQ14Data();
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers_q14/",
-                        data: {"answer_body": Q14},
-                        dataType: "json",
-//                        success: function (result) {
-//                            console.log(result);
-//                        }
-                    });
-
+                    insertQ14();
                 });
             }
 
             if (id == 15) {
-                $('#next_btn').click(function () {
-                    if ($('#q15 option:selected').val() == 'dechet_par_dechet') {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/16';
-                        $("#next_btn").attr("href", href_next);
-                    } else if ($('#q15 option:selected').val() == 'avec_regroupements') {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/17';
-                        $("#next_btn").attr("href", href_next);
-                    } else {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/18';
-                        $("#next_btn").attr("href", href_next);
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ15();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-
-                    var Q15 = $('#q15 option:selected').val();
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q15, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
-
+                });
+                $('#next_btn').click(function () {
+                    insertQ15();
                 });
             }
             if (id == 16) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ16();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-                    href_next = base_url + 'index.php/home/page/' + survey + '/18';
-                    $("#next_btn").attr("href", href_next);
-                    var Q16 = localStorage.getItem('q16');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q16, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ16();
                 });
             }
             if (id == 17) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ17();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-                    var Q17 = localStorage.getItem('q17');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q17, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ17();
                 });
             }
             if (id == 18) {
 
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        window.location.href = href_next;
+                    }
+                });
+                $('#next_btn').click(function () {
+                    $("#next_btn").attr("href", href_next);
+                });
 //                var array = [];
 //                $("#btnShow2").on("click", function () {
 //                    $("tr:nth-child(n+1)").each(function () {
@@ -463,251 +388,181 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
             if (id == 19) {
-                $('#next_btn').click(function () {
-                    if ($('input[value="non"][name="Q19"]').prop("checked") == true) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/21';
-                        $("#next_btn").attr("href", href_next);
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ19();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-                    var Q19 = localStorage.getItem('Q19');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q19, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                });
+                $('#next_btn').click(function () {
+                    insertQ19();
                 });
             }
 
             if (id == 20) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ20();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q20 = localStorage.getItem('q20');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q20, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ20();
                 });
             }
             if (id == 21) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ21();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q21 = localStorage.getItem('q21');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q21, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ21();
                 });
             }
             if (id == 22) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ22();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q22 = localStorage.getItem('q22');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q22, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ22();
                 });
             }
             if (id == 23) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ23();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q23 = localStorage.getItem('q23');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q23, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ23();
                 });
             }
             if (id == 24) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ24();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q24 = localStorage.getItem('q24');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q24, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ24();
                 });
             }
             if (id == 25) {
-                $('#next_btn').click(function () {
-                    if ($('input[value="non"][name="Q25"]').prop("checked") == true) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/27';
-                        $("#next_btn").attr("href", href_next);
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ25();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-                    var Q25 = localStorage.getItem('Q25');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q25, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                });
+                $('#next_btn').click(function () {
+                    insertQ25;
                 });
             }
             if (id == 26) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ26();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q26 = localStorage.getItem('Q26');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q26, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ26();
                 });
             }
             if (id == 27) {
-                $('#next_btn').click(function () {
-                    if ($('input[value="non"][name="Q27"]').prop("checked") == true) {
-                        href_next = base_url + 'index.php/home/page/' + survey + '/29';
-                        $("#next_btn").attr("href", href_next);
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ27();  // voir le dossier assets/js
+                        window.location.href = href_next;
                     }
-                    var Q27 = localStorage.getItem('Q27');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q27, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                });
+                $('#next_btn').click(function () {
+                    insertQ27();
                 });
             }
             if (id == 28) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ28();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q28 = localStorage.getItem('Q28');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q28, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ28();
                 });
             }
             if (id == 29) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ29();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q29 = localStorage.getItem('q29');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q29, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ29();
                 });
             }
             if (id == 30) {
-
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ30();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-                    var en_Km = localStorage.getItem('q30-1');
-                    var en_min = localStorage.getItem('q30-2');
-                    var Q30 = [en_Km, en_min];
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers_array/",
-                        data: {"answer_body": Q30, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ30();
                 });
             }
             if (id == 31) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ31();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
 
                 $('#next_btn').click(function () {
-                    var Q31_1 = localStorage.getItem('q31-1');
-                    var Q31_2 = localStorage.getItem('q31-2');
-                    var Q31 = [Q31_1, Q31_2];
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url(); ?>index.php/home/set_answers_array/",
-                        data: {"answer_body": Q31, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ31();
                 });
             }
             if (id == 32) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ32();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q32 = localStorage.getItem('q32');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q32, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ32();
                 });
             }
             if (id == 33) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ33();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    var Q33 = localStorage.getItem('q33');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q33, "question_id": question_id, "user_id": user_id},
-                        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
-                    });
+                    insertQ33();
                 });
             }
             if (id == 34) {
-
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ34();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-                    var Q34_1 = localStorage.getItem('q34-1');
-                    var Q34_2 = localStorage.getItem('q34-2');
-                    var Q34_3 = localStorage.getItem('q34-3');
-                    var Q34 = [Q34_1, Q34_2, Q34_3];
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers_array/",
-                        data: {"answer_body": Q34, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ34();
                 });
             }
 //            var Q = [];
@@ -729,84 +584,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //            }
 
             if (id == 35) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ35();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
 
                 $('#next_btn').click(function () {
-
-                    Q35 = localStorage.getItem('q35');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q35, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ35();
                 });
             }
             if (id == 36) {
-
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ36();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $('#next_btn').click(function () {
-
-                    Q36 = localStorage.getItem('q36');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q36, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ36();
                 });
             }
             if (id == 37) {
-
-                $('#next_btn').click(function () {
-
-                    Q37 = localStorage.getItem('q37');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q37, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ37();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
                 });
-            }
-            if (id == 39) {
 
                 $('#next_btn').click(function () {
-
-                    Q39 = localStorage.getItem('q39');
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers/",
-                        data: {"answer_body": Q39, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ37()
                 });
             }
 
             if (id == 38) {
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ38();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
 
                 $('#next_btn').click(function () {
-                    var Q38_1 = localStorage.getItem('q38-1');
-                    var Q38_2 = localStorage.getItem('q38-2');
-                    var Q38_3 = localStorage.getItem('q38-3');
-                    var Q38_4 = localStorage.getItem('q38-4');
-                    var Q38_5 = localStorage.getItem('q38-5');
-                    var Q38_6 = localStorage.getItem('q38-6');
-                    var Q38 = [Q38_1, Q38_2, Q38_3, Q38_4, Q38_5, Q38_6];
-                    $.ajax({
-                        type: "post",
-                        url: base_url + "index.php/home/set_answers_array/",
-                        data: {"answer_body": Q38, "question_id": question_id, "user_id": user_id},
-                        dataType: "json"
-                    });
+                    insertQ38();
                 });
             }
-            if (id == array_IDs.length)
+
+            if (id == array_IDs.length) //id=39
             {
-
                 $("#next_btn").html("Valider");
+                $(window).keydown(function (e) {
+                    if (e.which === 13) {
+                        insertQ39();  // voir le dossier assets/js
+                        window.location.href = href_next;
+                    }
+                });
                 $("#next_btn").click(function () {
-                    href_next = base_url + "index.php/home/fin/"
-                    $(this).attr("href", href_next);
-
+                    insertQ39();
                 });
             }
 
@@ -831,7 +667,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $(document).ready(function () {  // LocalStorage
 
                 $('input').addClass("useLocal useLocalInput");
-                $('input[type="checkbox"]').addClass("useLocal useLocalInput");
+                $('input[type="checkbox"]').addClass("Q_18");
                 $('select').addClass("useLocal useLocalSelect");
 
                 ///////// Setters///////
@@ -861,12 +697,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     });
                 }, 500);
 
-                var checkboxes = document.querySelectorAll('input[type=checkbox]');
-                window.setInterval(function () {
-                    for (i = 0; i < checkboxes.length; i++) {
-                        localStorage.setItem(checkboxes[i].value, checkboxes[i].checked);
-                    }
-                }, 500);
+                $('.Q_18').on('click', function () {
+                    var fav, favs = [];
+                    $('.Q_18').each(function () { // run through each of the checkboxes
+                        fav = {id: $(this).attr('id'), value: $(this).prop('checked')};
+                        favs.push(fav);
+                    });
+                    localStorage.setItem("favorites", JSON.stringify(favs));
+                });
+
+//                var checkboxes = document.querySelectorAll('input[type=checkbox]');
+//                window.setInterval(function () {
+//                    for (i = 0; i < checkboxes.length; i++) {
+//                        localStorage.setItem(checkboxes[i].value, checkboxes[i].checked);
+//                    }
+//                }, 500);
 
 
                 ////////Getters////////
@@ -883,10 +728,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $('input[value="' + value + '"][name="' + name + '"]').prop('checked', true);
                 });
 
-
-                for (i = 0; i < checkboxes.length; i++) {
-                    checkboxes[i].checked = localStorage.getItem(checkboxes[i].value) === "true" ? true : false;
+                var favorites = JSON.parse(localStorage.getItem('favorites'));
+                if (!favorites.length) {
+                    return
                 }
+                ;
+                console.debug(favorites);
+
+                for (var i = 0; i < favorites.length; i++) {
+                    console.debug(favorites[i].value == 'on');
+                    $('#' + favorites[i].id).prop('checked', favorites[i].value);
+                }
+//                for (i = 0; i < checkboxes.length; i++) {
+//                    checkboxes[i].checked = localStorage.getItem(checkboxes[i].value) === "true" ? true : false;
+//                }
 //                $('.clearLocalSelect').click(function () {
 //                    $('.useLocalSelect').each(function () {
 //                        $(this).val('');
@@ -932,35 +787,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     {
                         refrech_pourcentage('q7-' + i + '-1', '#q7-' + i + '-3');
                     }
-                    function getTableQ7Data() {
-                        var array = [];
-                        //$("#btnShow2").on("click", function () {
-                        $("tr:nth-child(n+1)").each(function () {
-                            rowData = $(this).find('input, select').serializeArray();
-                            var rowAr = {};
-                            $.each(rowData, function (e, v) {
-                                rowAr[v['name']] = v['value'];
-                            });
-                            array.push(rowAr);
-                        });
-//                        console.log(array);
-//                    });
-                        return array;
-                    }
+
 //alert(array[3].unit);
-
+                    $(window).keydown(function (e) {
+                        if (e.which === 13) {
+                            insertQ7();  // voir le dossier assets/js
+                            window.location.href = href_next;
+                        }
+                    });
                     $("#next_btn").click(function () {
-                        var Q7 = getTableQ7Data();
-                        $.ajax({
-                            type: "post",
-                            url: "<?php echo base_url(); ?>index.php/home/set_answers_q7/",
-                            data: {"answer_body": Q7},
-                            dataType: "json",
-//                         success: function (result) {
-//                             console.log(result); 
-//                        }
-                        });
-
+                        insertQ7();
                     });
                 }
 
@@ -1039,12 +875,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //                    }
 //
 //                });
-//var next = $('#next_btn')[0];
-//$(window).keydown(function (e) {
-//    if ( e.which === 13 ) {
-//        window.location.href = next.href;        
-//    }
-//});
+
+//                var next = $('#next_btn')[0];
+//                $(window).keydown(function (e) {
+//                    if (e.which === 13) {
+//                        if ($('input[type=radio]').prop("checked") == true && $('input[type=radio]').prop("id") == "q1-oui") {
+//                            href_next = base_url + 'index.php/home/page/' + survey + '/3'; 
+//                        }
+//                        window.location.href = href_next;
+//                        //$('#next_btn').click();
+//                    }
+//                });
+
             });
         </script>
 
