@@ -49,8 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Footer here-->
         <?php // include('include/footer.php'); ?>
 
-        <div id="res"></div>
-        <button id="btnShow2"></button>
+        
 
         <!-- SCRIPTS here -->
         <?php include('include/scripts.php'); ?>

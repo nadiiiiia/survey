@@ -27,14 +27,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>-->
 
                             <!--Body-->
-                            
+                            <br>
+                            <br>
                             <h2 class="text-center"> Merci de votre participation !</h2>
                             <br>
                             <br>
 
                             <div class="text-center">
-                                <a href="<?php echo base_url(); ?>index.php/home/page/2/1" class="btn cyan-darken-3-color waves-effect waves-light" >Reprendre le questionnaire</a>
-                            </div>
+                             </div>
 
                         </div>
 

@@ -7,10 +7,7 @@
             <!--Section: Dynamic content wrapper-->
             <section  class="mb-5">
 
-                <?php //$action =  base_url()."index.php/home/set_answers_q7/" ;
-               // $attribut = array('name' => 'q_form');
-               // echo form_open($action, $attribut);
-                ?> 
+                <form>
                 <h2><span class="badge blue"></span> </h2>   <!--Titre de la Section-->
                 <hr/>
                 <div  class=" card card-body">
@@ -40,7 +37,8 @@
                     </div>
                 </div>
                 <!-- End Survey btn-->
-<?php// echo form_close(); ?>
+                </form>
+
             </section>
 
             <!--Section: Dynamic content wrapper-->
@@ -49,5 +47,5 @@
     </div>
     <div class="col-md-1"></div>
 </div>
-<button id="btnShow2"></button>
+
 
