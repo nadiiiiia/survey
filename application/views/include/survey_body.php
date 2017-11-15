@@ -30,7 +30,8 @@
 
                 <div class="row" >
                     <div class="col-md-12 col-sm-12" id= "survey_btn">
-                        <a href="" id="next_btn" class="btn cyan-darken-3-color btn-sm waves-effect waves-light pull-right">suivant</a>
+                        <a href="" id="next_btn" class="btn cyan-darken-3-color btn-sm waves-effect waves-light pull-right" style="background-color: #00acc1; -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);">suivant</a>
 
                         <a href="" id="back_btn" class="btn cyan-darken-3-color btn-sm waves-effect waves-light pull-left"  >précédent</a>
                    

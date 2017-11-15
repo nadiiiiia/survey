@@ -43,19 +43,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!--  survey_body here-->
         <?php include('include/survey_body.php'); ?>
-
+        <button id="btnShow"></button>
 
 
         <!-- Footer here-->
         <?php // include('include/footer.php'); ?>
 
-        
+
 
         <!-- SCRIPTS here -->
         <?php include('include/scripts.php'); ?>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pourcentage.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q7.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q6.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q9.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q10.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/control_q11.js"></script>
@@ -182,9 +183,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
 
             if (id == 6) {
+
+                window.setInterval(function () {
+                    control_q6();
+                }, 50);
+
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
-                        insertQ6();  // voir le dossier assets/js
+                        insertQ6();  // voir le fichier assets/js/insertAnswer.js
                         window.location.href = href_next;
                     }
                 });
@@ -219,7 +225,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $('#table-q9').hide();
 
                     }
-                });
+                });        
+
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ9();  // voir le dossier assets/js

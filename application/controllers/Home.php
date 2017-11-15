@@ -112,6 +112,37 @@ class Home extends Home_Controller {
             $this->AnswerModel->addAnswerActivity($row);
         }
     }
+    public function set_answers_q9_q10_q11() {
+        // partie oui/non
+        $answer = $this->input->post('answer_body');
+        $user = $this->input->post('user_id');
+        $question = $this->input->post('question_id');
+
+        $answer_data = array(
+            'answer_question_id' => $question,
+            'user' => $user,
+            'answer_body' => $answer);
+
+        $this->AnswerModel->addAnswer($answer_data);
+         
+        // partie tableau
+        $tab_data = $this->input->post('tab_data');
+
+        $result = array();
+        $element = array();
+
+        foreach ($tab_data as $cle => $valeur) {
+            $data = array_values($valeur);
+            $element['question_id'] = $data[0];
+            $element['user_id'] = $data[1];
+            $element['dechet_id'] = $data[2];
+            $element['qte'] = $data[3];
+            $result[] = $element;
+        }
+        
+        
+        
+    }
     public function set_answers_q14() {
 
         $answer_body = $this->input->post('answer_body');
@@ -156,7 +187,7 @@ class Home extends Home_Controller {
 
     public function set_answers_test() {
 
-        $result = $this->input->post('answer_body');
+        $result = $this->input->post('tab_data');
 
 
 

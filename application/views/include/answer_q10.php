@@ -1,8 +1,8 @@
 <fieldset class='form-group'>
-    <input id='q10-oui' name='Q10' type='radio' value='oui'><label for='oui'>Oui</label>
+    <input id='q10-oui' name='Q10' type='radio' value='oui'><label for='oui'>&nbsp;Oui</label>
 </fieldset>
 <fieldset class='form-group'>
-    <input id='q10-non' name='Q10' type='radio' value='non'><label for='non'>Non</label> 
+    <input id='q10-non' name='Q10' type='radio' value='non'><label for='non'>&nbsp;Non</label> 
 </fieldset>
 
 
@@ -104,36 +104,46 @@
             <!--Table head-->
 
             <!--Table body-->
-            <tbody>
+            <tbody class="qte">
                 <tr>
 
-                    <td> <input id='q10-1-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
+                    <td class="hidden"> <input type = "text" class="q10" name="dechet_id" value="7"/></td> 
+                    <td>  <input id='q10-1-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q10-2-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
+                    <td class="hidden"> <input type = "text" class="q10" name="dechet_id" value="8"/></td> 
+                    <td>  <input id='q10-2-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q10-3-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
+                    <td class="hidden"><input type = "text" class="q10" name="dechet_id" value="9"/></td>  
+                    <td>  <input id='q10-3-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q10-4-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
+                    <td class="hidden"><input type = "text" class="q10" name="dechet_id" value="10"/> </td> 
+                    <td>  <input id='q10-4-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
+                    <td class="hidden"> <input type = "text" class="q10" name="dechet_id" value="11"/></td> 
                     <td> <input id='q10-5-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
+                     <td class="hidden"><input type = "text" class="q10" name="dechet_id" value="12"/></td>  
                     <td> <input id='q10-6-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
+                    <td class="hidden"> <input type = "text" class="q10" name="dechet_id" value="13"/></td> 
                     <td> <input id='q10-7-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q10-8-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
+                    <td class="hidden"> <input type = "text" class="q10" name="dechet_id" value="14"/></td> 
+                    <td>  <input id='q10-8-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
-                    <td> <input id='q10-9-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
+                    <td class="hidden"> <input type = "text" class="q10" name="dechet_id" value="15"/></td> 
+                    <td>   <input id='q10-9-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>
+                    <td class="hidden"><input type = "text" class="q10" name="dechet_id" value="16"/> </td> 
                     <td> <input id='q10-10-3' type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"></td>
                 </tr>
                 <tr>

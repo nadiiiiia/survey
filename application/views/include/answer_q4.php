@@ -1,5 +1,5 @@
 <div class='col-lg-8 col-md-12 mb-r'>
-    -la quantité totale de déchets générés sur vos chantiers en 2015 ?
+    &nbsp;La quantité totale de déchets générés sur vos chantiers en 2015 ?
 </div>
 <div class='row'><div class='col-lg-3 col-md-12 mb-r'>
         <input type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  id='q4-1-1'></div>
@@ -12,7 +12,7 @@
     <br><br>
 </div>
 <div class='col-lg-8 col-md-12 mb-r'>
-    -la quantité moyenne de déchets générés sur un chantier ?
+    &nbsp;La quantité moyenne de déchets générés sur un chantier ?
 </div>
 
 <div class='row'>

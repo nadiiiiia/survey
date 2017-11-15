@@ -143,16 +143,37 @@ function insertQ8() {
 
 function insertQ9() {
     var Q9 = localStorage.getItem('Q9');
+    var tab_data;
+    
+    function getTableQ9Data() {
+                    var array = [];
+                    $(".qte tr:nth-child(n+1)").each(function () {
+                        rowData = $(this).find('input').serializeArray();
+                        var rowAr = {};
+                        $.each(rowData, function (e, v) {
+                            rowAr[v['name']] = v['value'];
+                        });
+                        array.push(rowAr);
+                    });
+                    return array ;
+                }
+    
+    tab_data = getTableQ9Data();
+    //alert(tab_data[1].qte);
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>index.php/home/set_answers/",
         data: {"answer_body": Q9, "question_id": question_id, "user_id": user_id},
-        dataType: "json"
+        dataType: "json",
+//                    success: function (result) {
+//                       console.log(result);
+//                   }
     });
 }
 
 function insertQ10() {
     var Q10 = localStorage.getItem('Q10');
+   Q10 = Q10.toString();
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>index.php/home/set_answers/",
