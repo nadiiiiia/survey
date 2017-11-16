@@ -30,21 +30,19 @@ Class AnswerModel extends CI_Model {
         }
     }
 
-    public function addAnswerActivity($data) {
+    public function addAnswerTab($data) {
         $question_id = $data['question_id'];
         $user_id = $data['user_id'];
-        $activity_id = $data['activity_id'];
+        $dechet_id = $data['dechet_id'];
         $qte = $data['qte'];
-        $unit = $data['unit'];
-        $percent = $data['percent'];
         $this->db->select('*');
-        $this->db->from('survey_activity_ans');
+        $this->db->from('survey_dechets_ans');
         $this->db->where('user_id', $user_id); //le meme utilisateur
         $this->db->where('question_id', $question_id); //la meme question
-        $this->db->where('activity_id', $activity_id); //  la meme activité
+        $this->db->where('$dechet_id', $dechet_id); //  la meme activité
 
         if ($this->db->count_all_results() == 0) { /// traitement si la réponse n'existe pas --> insert
-            if ($this->db->insert('survey_activity_ans', $data)) {
+            if ($this->db->insert('survey_dechets_ans', $data)) {
                 return true;
             } 
         } else {  /// traitement si la réponse existe --> update
@@ -59,6 +57,7 @@ Class AnswerModel extends CI_Model {
             }
         }
     }
+    
     
         public function addAnswerDepartement($data) {
         $question_id = $data['question_id'];

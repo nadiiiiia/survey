@@ -20,8 +20,8 @@
                 <td><input name="qte" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q7-1-1'></td>
                 <td><select name="unit" id='q7-1-2' class='q7 mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 <td><input name="percent" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  id='q7-1-3'></td>
-               <td class="hidden"><input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>" ></td>
-                  <td class="hidden">  <input name="question_id" class="question" type='text'  ></td>
+                <td class="hidden"><input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>" ></td>
+                <td class="hidden">  <input name="question_id" class="question" type='text'  ></td>
             </tr>
             <tr>
                 <th scope='row'>Démolition à l'explosif<input type = "hidden" class="q7" name="activity_id" value="2"/></th>
@@ -29,25 +29,25 @@
                 <td><select name="unit" id='q7-2-2' class='q7 mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 <td><input name="percent" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"   class="q7" id='q7-2-3'></td>
                 <td class="hidden"><input name="user_id" class="user" type='text'   value="<?php echo $id_user_connected; ?>" ></td>
-                    <td class="hidden"><input name="question_id" class="question" type='text'  >
+                <td class="hidden"><input name="question_id" class="question" type='text'  >
                 </td>
             </tr>
             <tr>
                 <th scope='row'>Découpe du béton* <input type = "hidden" class="q7" name="activity_id" value="3"/></th>
                 <td><input  name="qte" class="q7" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" class="q7" id='q7-3-1'></td>
                 <td><select name="unit" id='q7-3-2' class='q7 mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
-                <td><input name="percent" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  class="q7" class="q7" id='q7-3-3'></td>
-               <td class="hidden"> <input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>"  ></td>
-                    <td class="hidden"><input name="question_id" class="question" type='text'  ></td>
-               
+                <td><input name="percent" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  class="q7"  id='q7-3-3'></td>
+                <td class="hidden"> <input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>"  ></td>
+                <td class="hidden"><input name="question_id" class="question" type='text'  ></td>
+
             </tr>
             <tr>
                 <th scope='row'>Désamiantage <input class="q7" type = "hidden" class="q7" name="activity_id" value="4"/></th>
                 <td><input  name="qte" class="q7" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" class="q7" id='q7-4-1'></td>
                 <td><select name="unit" id='q7-4-2' class='q7 mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 <td><input name="percent" class="q7" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  id='q7-4-3'></td>
-                   <td class="hidden"> <input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>"  ></td>
-                  <td class="hidden">  <input name="question_id" class="question" type='text' >
+                <td class="hidden"> <input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>"  ></td>
+                <td class="hidden">  <input name="question_id" class="question" type='text' >
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
                 <td><input  name="qte" class="q7" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q7-5-1'></td>
                 <td><select name="unit" id='q7-5-2' class='q7 mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 <td><input name="percent" class="q7" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"  id='q7-5-3'></td>
-               <td class="hidden"> <input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>" ></td>
+                <td class="hidden"> <input name="user_id" class="user" type='text'  value="<?php echo $id_user_connected; ?>" ></td>
                 <td class="hidden">    <input name="question_id" class="question" type='text' > </td>
             </tr>
             <tr>
@@ -63,8 +63,8 @@
                 <td><input name="qte" class="q7" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q7-6-1'></td>
                 <td><select name="unit" id='q7-5-2' class='q7 mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 <td><input class="q7" name="percent" type = "number" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)"   id='q7-6-3'></td>
-                      <td class="hidden"> <input name="user_id" class="user"  type='text' value="<?php echo $id_user_connected; ?>" ></td>
-                  <td class="hidden">  <input  name="question_id" class="question" type='text' ></td>
+                <td class="hidden"> <input name="user_id" class="user"  type='text' value="<?php echo $id_user_connected; ?>" ></td>
+                <td class="hidden">  <input  name="question_id" class="question" type='text' ></td>
             </tr>
 
         </tbody>
@@ -73,6 +73,6 @@
     <!--Table-->
     <small> * par carottage ou sciage</small> 
     <div id="error_q7" class=" alert-danger"><p>Le montant total dépasse le Total déchets de votre réponse dans Q4</p></div>
-    
+
 
 </div>

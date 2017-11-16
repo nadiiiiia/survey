@@ -162,12 +162,12 @@ function insertQ9() {
     //alert(tab_data[1].qte);
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-        data: {"answer_body": Q9, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_q9_q10_q11/",
+        data: {"answer_body": Q9,"tab_data":tab_data, "question_id": question_id, "user_id": user_id},
         dataType: "json",
-//                    success: function (result) {
-//                       console.log(result);
-//                   }
+                    success: function (result) {
+                       console.log(result);
+                  }
     });
 }
 

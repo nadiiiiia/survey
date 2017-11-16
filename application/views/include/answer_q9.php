@@ -59,7 +59,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <th scope="row"><input type="text" name="Q9-8-0" id='q9-8-1' placeholder="Préciser"></th>
+                    <th scope="row"></th>
                     <td> </td>
                     <td></td>
                 </tr>
@@ -115,7 +115,7 @@
                 </tr>
                 <tr>
                     <td class="hidden"><input name="user_id" class="user" type='text' ></td>
-                    <td class="hidden">  <input name="question_id" class="question" type='text'  ></td>
+                    <td class="hidden">  <input name="question_id" class="question" type='text'></td>
                     <td class="hidden"> <input type = "text" class="q9" name="dechet_id" value="5"/></td> 
                     <td> <input type = "number" name="qte" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-5-3'></td>
                     <td><select id='q9-5-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
@@ -127,14 +127,14 @@
                     <td>  <input type = "number" name="qte" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-6-3'></td>
                     <td><select id='q9-6-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr>
-              <!--  <tr class="hidden">
+                <tr class="hidden">
                     <td> <input type = "number" name="qte" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-7-3'></td>
                     <td><select id='q9-7-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
                 </tr >
                 <tr>
                     <td> <input type = "number" name="qte" maxlength = "5" onkeypress="return isNumeric(event)" oninput="maxLengthCheck(this)" id='q9-8-3'></td>
                     <td><select id='q9-8-4' class='mdb-select initialized'><option value='tonnes'>Tonnes</option><option value='m3'>m3</option></select></td>
-                </tr>-->
+                </tr>
             </tbody>
             <!--Table body-->
         </table>

@@ -112,6 +112,7 @@ class Home extends Home_Controller {
             $this->AnswerModel->addAnswerActivity($row);
         }
     }
+
     public function set_answers_q9_q10_q11() {
         // partie oui/non
         $answer = $this->input->post('answer_body');
@@ -124,7 +125,7 @@ class Home extends Home_Controller {
             'answer_body' => $answer);
 
         $this->AnswerModel->addAnswer($answer_data);
-         
+
         // partie tableau
         $tab_data = $this->input->post('tab_data');
 
@@ -138,11 +139,13 @@ class Home extends Home_Controller {
             $element['dechet_id'] = $data[2];
             $element['qte'] = $data[3];
             $result[] = $element;
+
+            foreach ($result as $row) {
+                $this->AnswerModel->addAnswerActivity($row);
+            }
         }
-        
-        
-        
     }
+
     public function set_answers_q14() {
 
         $answer_body = $this->input->post('answer_body');
@@ -181,8 +184,8 @@ class Home extends Home_Controller {
             'answer_question_id' => $question,
             'user' => $user,
             'answer_body' => $answer);
-        
-         $this->AnswerModel->addAnswer($answer_data);
+
+        $this->AnswerModel->addAnswer($answer_data);
     }
 
     public function set_answers_test() {
@@ -200,6 +203,7 @@ class Home extends Home_Controller {
         $this->data["action"] = 'attach';
         $this->load->view('surveyReport', $this->data);
     }
+
     public function fin() {
         $this->load->view('fin', $this->data);
     }

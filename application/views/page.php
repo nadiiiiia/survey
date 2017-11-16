@@ -268,7 +268,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('input[type="radio"]').click(function () {
                     if ($(this).prop("checked") == true && $(this).prop("id") == "q11-oui") {
                         $('#table-q11').show();
-
                     }
                 });
                 $('input[type="radio"]').click(function () {
