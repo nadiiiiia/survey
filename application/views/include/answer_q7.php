@@ -72,7 +72,7 @@
     </table>
     <!--Table-->
     <small> * par carottage ou sciage</small> 
-    <div id="error_q7" class=" alert-danger"><p>Le montant total dépasse le Total déchets de votre réponse dans Q4</p></div>
+    <div id="error_q7" class=" alert-danger"></div>
 
 
 </div>

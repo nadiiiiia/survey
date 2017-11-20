@@ -16,6 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var question = <?php echo $question_json; ?>;
         var question_id = <?php echo $question_id; ?>;
         var question_number = <?php echo $question_number; ?>;
+        var question_to_go;
+        var back_page = <?php echo $back_page; ?>;
         var question_body = <?php echo $question_body; ?>;
         var question_note = <?php echo $question_note; ?>;
         var section_number = <?php echo $section_number; ?>;
@@ -78,8 +80,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $('.hidden').hide();
             $('.user').val(user_id);
             $('.question').val(question_id);
+            $('#back').val(question_number);
 
 
+            function getBackPage(id) {
+                $.each(back_page, function (key, val) {
+
+                    if (val.question_nbr == id) {
+                        id_back = val.back_nbr;
+                    }
+
+                });
+                return id_back;
+            }
 
 
             /// Règles générales des boutons suivant et précédent
@@ -164,6 +177,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 });
                 $("#next_btn").click(function () {
                     insertQ4();
+                    href_next = base_url + 'index.php/home/page/' + survey + '/7';
+                    $(this).attr("href", href_next);
                 });
             }
 
@@ -178,6 +193,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     insertQ5();
                 });
                 $("#back_btn").click(function () {
+                    href_back = base_url + 'index.php/home/page/' + survey + '/3';
                     $(this).attr("href", href_back);
                 });
             }
@@ -201,6 +217,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
             if (id == 8) {
+                $('#back_btn').click(function () {
+                        href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                        $("#back_btn").attr("href", href_back);
+                    });
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ8();  // voir le dossier assets/js
@@ -225,7 +245,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $('#table-q9').hide();
 
                     }
-                });        
+                });
 
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
@@ -287,6 +307,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 });
             }
             if (id == 12) {
+                $('#back_btn').click(function () {
+                        href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                        $("#back_btn").attr("href", href_back);
+                    });
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ12();  // voir le dossier assets/js
@@ -299,6 +323,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
 
             if (id == 13) {
+                $('#back_btn').click(function () {
+                        href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                        $("#back_btn").attr("href", href_back);
+                    });
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ13();  // voir le dossier assets/js
@@ -322,6 +350,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
 
             if (id == 15) {
+                $('#back_btn').click(function () {
+                        href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                        $("#back_btn").attr("href", href_back);
+                    });
+//alert(back_page[1].back_nbr);
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ15();  // voir le dossier assets/js
@@ -331,6 +364,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('#next_btn').click(function () {
                     insertQ15();
                 });
+                
             }
             if (id == 16) {
                 $(window).keydown(function (e) {
@@ -353,8 +387,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('#next_btn').click(function () {
                     insertQ17();
                 });
+                $('#back_btn').click(function () {
+                    href_back = base_url + 'index.php/home/page/' + survey + '/15';
+                    $("#back_btn").attr("href", href_back);
+                });
             }
             if (id == 18) {
+                $('#back_btn').click(function () {
+                        href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                        $("#back_btn").attr("href", href_back);
+                    });
+
+                var favorites = JSON.parse(localStorage.getItem('favorites'));
+                if (favorites && !favorites.length) {
+                    return
+                }
+                ;
+                console.debug(favorites);
+
+                for (var i = 0; i < favorites.length; i++) {
+                    console.debug(favorites[i].value == 'on');
+                    $('#' + favorites[i].id).prop('checked', favorites[i].value);
+                }
 
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
@@ -416,6 +470,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 });
             }
             if (id == 21) {
+                $('#back_btn').click(function () {
+                        href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                        $("#back_btn").attr("href", href_back);
+                    });
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ21();  // voir le dossier assets/js
@@ -460,6 +518,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 });
             }
             if (id == 25) {
+
+                $('#back_btn').click(function () {
+                    href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                    $("#back_btn").attr("href", href_back);
+                });
+
+
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ25();  // voir le dossier assets/js
@@ -469,6 +534,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('#next_btn').click(function () {
                     insertQ25;
                 });
+
+
             }
             if (id == 26) {
                 $(window).keydown(function (e) {
@@ -733,17 +800,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $('input[value="' + value + '"][name="' + name + '"]').prop('checked', true);
                 });
 
-                var favorites = JSON.parse(localStorage.getItem('favorites'));
-                if (!favorites.length) {
-                    return
-                }
-                ;
-                console.debug(favorites);
 
-                for (var i = 0; i < favorites.length; i++) {
-                    console.debug(favorites[i].value == 'on');
-                    $('#' + favorites[i].id).prop('checked', favorites[i].value);
-                }
 //                for (i = 0; i < checkboxes.length; i++) {
 //                    checkboxes[i].checked = localStorage.getItem(checkboxes[i].value) === "true" ? true : false;
 //                }
@@ -776,6 +833,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </script>
         <script>
             $(document).ready(function () {
+
+
                 window.setInterval(function () {
                     control_q7();
                 }, 50);
@@ -794,6 +853,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
 
 //alert(array[3].unit);
+                    $('#back_btn').click(function () {
+                        href_back = base_url + 'index.php/home/page/' + survey + '/' + getBackPage(id);
+                        $("#back_btn").attr("href", href_back);
+                    });
+                    
                     $(window).keydown(function (e) {
                         if (e.which === 13) {
                             insertQ7();  // voir le dossier assets/js
@@ -803,6 +867,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $("#next_btn").click(function () {
                         insertQ7();
                     });
+
                 }
 
             });

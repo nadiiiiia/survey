@@ -23,10 +23,11 @@ function insertQ2() {
     $("#next_btn").attr("href", href_next);
 
     var Q2 = localStorage.getItem('q2');
+    question_to_go = 25;
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q2, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q2, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 }
@@ -50,15 +51,16 @@ function insertQ3()
 }
 
 function insertQ4() {
-    href_next = base_url + 'index.php/home/page/' + survey + '/7';
+    
+    question_to_go = 7;
     var Q4_1 = localStorage.getItem('q4-1-1');
     var Q4_2 = localStorage.getItem('q4-2-1');
     $(this).attr("href", href_next);
     var Q4 = [Q4_1, Q4_2];
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers_array/",
-        data: {"answer_body": Q4, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_array_back/",
+        data: {"answer_body": Q4, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 }
@@ -67,7 +69,8 @@ function insertQ5() {
     var Q5;
     href_back = base_url + 'index.php/home/page/' + survey + '/3';
     if ($('input[value="non"][name="Q5"]').prop("checked") == true) {
-        href_next = base_url + 'index.php/home/page/' + survey + '/25'; //if q5 == non
+        href_next = base_url + 'index.php/home/page/' + survey + '/25';
+        question_to_go = 25;
         Q5 = 'non';
         $("#next_btn").attr("href", href_next);
     } else {
@@ -75,26 +78,22 @@ function insertQ5() {
     }
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-        data: {"answer_body": Q5, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q5, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 
 }
 
 function insertQ6() {
+    question_to_go = 7;
     var min = localStorage.getItem('q6-1');
     var max = localStorage.getItem('q6-2');
     var Q6 = [min, max];
-    if ($('input[value="non"][name="Q8"]').prop("checked") == true) {
-        href_next = base_url + 'index.php/home/page/' + survey + '/13'; //if q6 == non
-        $("#next_btn").attr("href", href_next);
-    }
-
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers_array/",
-        data: {"answer_body": Q6, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_array/",
+        data: {"answer_body": Q6, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 }
@@ -118,7 +117,7 @@ function insertQ7() {
     var Q7 = getTableQ7Data();
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers_q7/",
+        url: base_url + "index.php/home/set_answers_q7/",
         data: {"answer_body": Q7},
         dataType: "json",
     });
@@ -127,6 +126,7 @@ function insertQ7() {
 
 function insertQ8() {
     if ($('input[value="non"][name="Q8"]').prop("checked") == true) {
+        question_to_go = 13;
         href_next = base_url + 'index.php/home/page/' + survey + '/13'; //if q8 == non
         $("#next_btn").attr("href", href_next);
     }
@@ -134,8 +134,8 @@ function insertQ8() {
     var Q8 = localStorage.getItem('Q8');
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
-        data: {"answer_body": Q8, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q8, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 
@@ -144,39 +144,39 @@ function insertQ8() {
 function insertQ9() {
     var Q9 = localStorage.getItem('Q9');
     var tab_data;
-    
+
     function getTableQ9Data() {
-                    var array = [];
-                    $(".qte tr:nth-child(n+1)").each(function () {
-                        rowData = $(this).find('input').serializeArray();
-                        var rowAr = {};
-                        $.each(rowData, function (e, v) {
-                            rowAr[v['name']] = v['value'];
-                        });
-                        array.push(rowAr);
-                    });
-                    return array ;
-                }
-    
+        var array = [];
+        $(".qte tr:nth-child(n+1)").each(function () {
+            rowData = $(this).find('input').serializeArray();
+            var rowAr = {};
+            $.each(rowData, function (e, v) {
+                rowAr[v['name']] = v['value'];
+            });
+            array.push(rowAr);
+        });
+        return array;
+    }
+
     tab_data = getTableQ9Data();
     //alert(tab_data[1].qte);
     $.ajax({
         type: "post",
         url: base_url + "index.php/home/set_answers_q9_q10_q11/",
-        data: {"answer_body": Q9,"tab_data":tab_data, "question_id": question_id, "user_id": user_id},
+        data: {"answer_body": Q9, "tab_data": tab_data, "question_id": question_id, "user_id": user_id},
         dataType: "json",
-                    success: function (result) {
-                       console.log(result);
-                  }
+        success: function (result) {
+            console.log(result);
+        }
     });
 }
 
 function insertQ10() {
     var Q10 = localStorage.getItem('Q10');
-   Q10 = Q10.toString();
+    Q10 = Q10.toString();
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+        url: base_url + "index.php/home/set_answers/",
         data: {"answer_body": Q10, "question_id": question_id, "user_id": user_id},
         dataType: "json"
     });
@@ -187,7 +187,7 @@ function insertQ11() {
     var Q11 = localStorage.getItem('Q11');
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers/",
+        url: base_url + "index.php/home/set_answers/",
         data: {"answer_body": Q11, "question_id": question_id, "user_id": user_id},
         dataType: "json"
     });
@@ -195,36 +195,37 @@ function insertQ11() {
 
 function insertQ12() {
     var Q12 = localStorage.getItem('q12');
+    question_to_go = 13;
+
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q12, "question_id": question_id, "user_id": user_id},
-        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q12, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
+        dataType: "json"
     });
 }
 
 function insertQ13() {
-
     var q13 = parseFloat($('input[name="Q13-1"]').val());
     q13 = isNaN(q13) ? '0.00' : q13;
-
+    var question_to_go =15;
     if (q13 <= 0) {
-        href_next = base_url + 'index.php/home/page/' + survey + '/15'; //if q8 == non
+        href_next = base_url + 'index.php/home/page/' + survey + '/15';
         $("#next_btn").attr("href", href_next);
+        question_to_go = 15;
     }
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": q13, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": q13, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
-
 }
 
+
+
 function insertQ14() {
+    
     function getTableQ14Data() {
         var array = [];
         //$("#btnShow2").on("click", function () {
@@ -242,10 +243,11 @@ function insertQ14() {
     }
     $("#next_btn").attr("href", href_next);
     var Q14 = getTableQ14Data();
+    question_to_go = 15 ;
     $.ajax({
         type: "post",
         url: base_url + "index.php/home/set_answers_q14/",
-        data: {"answer_body": Q14},
+        data: {"answer_body": Q14,"user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 }
@@ -258,6 +260,7 @@ function insertQ15() {
         href_next = base_url + 'index.php/home/page/' + survey + '/17';
         $("#next_btn").attr("href", href_next);
     } else {
+        question_to_go = 18 ;
         href_next = base_url + 'index.php/home/page/' + survey + '/18';
         $("#next_btn").attr("href", href_next);
     }
@@ -265,8 +268,8 @@ function insertQ15() {
     var Q15 = $('#q15 option:selected').val();
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q15, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q15, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 }
@@ -275,10 +278,11 @@ function insertQ16() {
     href_next = base_url + 'index.php/home/page/' + survey + '/18';
     $("#next_btn").attr("href", href_next);
     var Q16 = localStorage.getItem('q16');
+    question_to_go = 18 ;
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q16, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q16, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json",
 //                    success: function (result) {
 //                        console.log(result);
@@ -288,10 +292,11 @@ function insertQ16() {
 
 function insertQ17() {
     var Q17 = localStorage.getItem('q17');
+    question_to_go = 18 ;
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q17, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q17, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json",
 //                    success: function (result) {
 //                        console.log(result);
@@ -300,29 +305,31 @@ function insertQ17() {
 }
 
 function insertQ18() {
-
+question_to_go = 19 ;
 }
 
 function insertQ19() {
     if ($('input[value="non"][name="Q19"]').prop("checked") == true) {
         href_next = base_url + 'index.php/home/page/' + survey + '/21';
         $("#next_btn").attr("href", href_next);
+        question_to_go = 21 ;
     }
     var Q19 = localStorage.getItem('Q19');
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q19, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q19, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 }
 
 function insertQ20() {
     var Q20 = localStorage.getItem('q20');
+    question_to_go = 21 ;
     $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q20, "question_id": question_id, "user_id": user_id},
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q20, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
         dataType: "json"
     });
 }
@@ -369,14 +376,13 @@ function insertQ23() {
 
 function insertQ24() {
     var Q24 = localStorage.getItem('q24');
-    $.ajax({
+    question_to_go = 25 ;
+    
+   $.ajax({
         type: "post",
-        url: base_url + "index.php/home/set_answers/",
-        data: {"answer_body": Q24, "question_id": question_id, "user_id": user_id},
-        dataType: "json",
-//                    success: function (result) {
-//                        console.log(result);
-//                    }
+        url: base_url + "index.php/home/set_answers_and_back/",
+        data: {"answer_body": Q24, "question_id": question_id, "user_id": user_id, "next": question_to_go, 'back': question_number, "survey": survey},
+        dataType: "json"
     });
 }
 
@@ -459,7 +465,7 @@ function insertQ30() {
     var Q30 = [en_Km, en_min];
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers_array/",
+        url: base_url + "index.php/home/set_answers_array/",
         data: {"answer_body": Q30, "question_id": question_id, "user_id": user_id},
         dataType: "json"
     });
@@ -471,7 +477,7 @@ function insertQ31() {
     var Q31 = [Q31_1, Q31_2];
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>index.php/home/set_answers_array/",
+        url: base_url + "index.php/home/set_answers_array/",
         data: {"answer_body": Q31, "question_id": question_id, "user_id": user_id},
         dataType: "json"
     });
@@ -573,3 +579,14 @@ function insertQ39() {
         dataType: "json"
     });
 }
+
+function getBackPage(id) {
+                $.each(back_page, function (key, val) {
+
+                    if (val.question_nbr == id) {
+                        id_back = val.back_nbr;
+                    }
+
+                });
+                return id_back;
+            }

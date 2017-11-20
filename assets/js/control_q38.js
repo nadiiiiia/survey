@@ -11,10 +11,19 @@ function control_q38() {
         somme = parseFloat(somme) + parseFloat(input); // calculer la somme des valeurs
         //alert(somme);
     }
-    if (somme > 100) {
-       $('#error_q38').show();
-            //  $('#error_q14').empty();
-       // $('#error_q38').append("Le montant total dépasse 100%");
+    
+    var chiffre = localStorage.getItem('q37' );
+    //chiffre = parseFloat(chiffre);
+        if (chiffre == null || chiffre == NaN || chiffre == '') {
+            chiffre = 0;
+        }
+        
+        
+    if (somme > chiffre) {
+       
+       $('#error_q38').empty();
+        $('#error_q38').append("Le montant total dépasse le chiffre dans Q37 ("+ chiffre +")");
+        $('#error_q38').show();
 //        $('#next_btn').click(function () {
 //            $("#next_btn").attr("href", "#");
 //        });
