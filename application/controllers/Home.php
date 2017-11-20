@@ -246,6 +246,11 @@ class Home extends Home_Controller {
     public function set_answers_array() {
 
         $answer = $this->input->post('answer_body');
+        $user = $this->input->post('user_id');
+        $survey = $this->input->post('survey');
+        
+        $next = $this->input->post('next');
+        $back = $this->input->post('back');
 
         if ($answer != null) {
             $answer = implode(",", $answer);  // (implode) Join array elements with a string
@@ -260,7 +265,14 @@ class Home extends Home_Controller {
             'user' => $user,
             'answer_body' => $answer);
 
+       $back_data = array(
+            'user_id' => $user,
+            'survey_id' => $survey,
+            'question_nbr' => $next,
+            'back_nbr' => $back);
+
         $this->AnswerModel->addAnswer($answer_data);
+        $this->AnswerModel->setBackPage($back_data);
     }
 
     public function set_answers_test() {

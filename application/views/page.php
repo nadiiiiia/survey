@@ -172,6 +172,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $(window).keydown(function (e) {
                     if (e.which === 13) {
                         insertQ4();  // voir le dossier assets/js
+                        href_next = base_url + 'index.php/home/page/' + survey + '/7';
                         window.location.href = href_next;
                     }
                 });
